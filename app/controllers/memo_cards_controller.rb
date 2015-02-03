@@ -5,7 +5,6 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards.json
   def index
     @memo_cards = MemoCard.all
-    @random_array = get_four_random_words
   end
 
   def get_four_random_words
@@ -13,11 +12,13 @@ class MemoCardsController < ApplicationController
     random_word = false_words.sample.word  #random false word
     random_word_second = false_words.sample.word
     random_word_third = false_words.sample.word
-    return answers = [random_word , random_word_second, random_word_third , "CORRECT"].shuffle
+    true_word = @memo_card.translation  #the correct answer
+    return answers = [random_word , random_word_second, random_word_third , true_word].shuffle
   end
   # GET /memo_cards/1
   # GET /memo_cards/1.json
   def show
+    @random_array = get_four_random_words
   end
 
   # GET /memo_cards/new
