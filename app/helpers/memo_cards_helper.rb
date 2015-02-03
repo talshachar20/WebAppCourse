@@ -1,0 +1,2 @@
+module MemoCardsHelper
+end

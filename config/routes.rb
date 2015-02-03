@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :false_words
+
+  resources :memo_cards
+
   resources :comments
 
   resources :posts do
