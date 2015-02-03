@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @memo_card.word %>
+</p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @memo_card.id %>
+</p>
+<p>
+  <strong>trans:</strong>
+  <%= @memo_card.translation %>
+</p>
+
+<%= link_to 'Edit', edit_memo_card_path(@memo_card) %> |
+<%= link_to 'Back', memo_cards_path %>

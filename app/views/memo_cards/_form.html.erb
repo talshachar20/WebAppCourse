@@ -1,0 +1,25 @@
+<%= form_for(@memo_card) do |f| %>
+  <% if @memo_card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@memo_card.errors.count, "error") %> prohibited this memo_card from being saved:</h2>
+
+      <ul>
+      <% @memo_card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :word %><br>
+    <%= f.text_field :word %>
+  </div>
+  <div class="field">
+    <%= f.label :translation %><br>
+    <%= f.text_field :translation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
