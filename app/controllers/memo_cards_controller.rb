@@ -78,6 +78,6 @@ class MemoCardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memo_card_params
-      params.require(:memo_card).permit(:word, :id, :translation, :word_id)
+      params.require(:memo_card).permit(:word , :translation, :word_id)
     end
 end
