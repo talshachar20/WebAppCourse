@@ -73,7 +73,7 @@ class MemoCardsController < ApplicationController
   def ajax_try()
     word_id = params[:id_of_word]
     word_in_page = params[:word]
-    right_answer = MemoCard.where(translation: "world" , id: word_id , word: word_in_page )
+    right_answer = MemoCard.where(translation: "world" , id: word_id)
     if right_answer.empty?
       respond_to do |format|
         format.json { render json: {answer:"false"} }
