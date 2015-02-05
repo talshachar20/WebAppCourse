@@ -2,7 +2,7 @@
 
 <p>
   <strong>Word:</strong>
-  <%= @memo_card.word %>
+  <br id="question"> <%= @memo_card.word %> </br>
 </p>
 
 <p>
@@ -10,7 +10,7 @@
   <%= @memo_card.id %>
 </p>
 <table>
-    <td> <%= @random_array.first  %> </td>
+    <td id="answer1"> <%= @random_array.first  %> </td>
     <td> <%= @random_array.second  %> </td>
     <td> <%= @random_array.third  %> </td>
     <td> <%= @random_array.fourth  %> </td>

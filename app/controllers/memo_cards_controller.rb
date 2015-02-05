@@ -70,6 +70,22 @@ class MemoCardsController < ApplicationController
     end
   end
 
+  def ajax_try()
+    word_id = params[:id_of_word]
+    word_in_page = params[:word]
+    right_answer = MemoCard.where(translation: "world" , id: word_id , word: word_in_page )
+    if right_answer.empty?
+      respond_to do |format|
+        format.json { render json: {answer:"false"} }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {answer:"true"} }
+      end
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memo_card
@@ -80,4 +96,6 @@ class MemoCardsController < ApplicationController
     def memo_card_params
       params.require(:memo_card).permit(:word , :translation, :word_id)
     end
+
+
 end
