@@ -4,15 +4,16 @@
 
 
 $(document).on("click" ,".answer",function(){
+    clicked_answer = $(this).text().trim()  //retrieve the clicked answer
     $.ajax({ type: 'GET',
         url: '1/ajax_try' ,
         dataType: "json",
-        data: {"word_temp": $("#answer1").text().trim() , "word_in_german": $("#question").text().trim()},
+        data: {"word_temp": clicked_answer , "word_in_german": $("#question").text().trim()},
         error: function(){
            alert("oops!");
         },
         success: function(json) {
-            alert (json.answer)
+            alert (clicked_answer + " " + json.answer)
         }
      });
 });
