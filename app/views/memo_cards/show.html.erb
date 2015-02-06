@@ -2,18 +2,19 @@
 
 <p>
   <strong>Word:</strong>
-  <br id="question"> <%= @memo_card.word %> </br>
 </p>
+<p id="question"> <%= @memo_card.word %> </p>
+
 
 <p>
   <strong>Id:</strong>
-  <%= @memo_card.id %>
+  <br> <%= @memo_card.id %> <br>
 </p>
 <table>
-    <td id="answer1"> <%= @random_array.first  %> </td>
-    <td> <%= @random_array.second  %> </td>
-    <td> <%= @random_array.third  %> </td>
-    <td> <%= @random_array.fourth  %> </td>
+    <td id="answer1" class="answer"> <%= @random_array.first  %> </td>
+    <td id="answer2" class="answer"> <%= @random_array.second  %> </td>
+    <td id="answer3" class="answer"> <%= @random_array.third  %> </td>
+    <td id="answer4" class="answer"> <%= @random_array.fourth  %> </td>
 </table>
 <p>
   <strong>trans:</strong>

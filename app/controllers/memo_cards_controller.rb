@@ -70,10 +70,10 @@ class MemoCardsController < ApplicationController
     end
   end
 
-  def ajax_try()
-    word_id = params[:id_of_word]
-    word_in_page = params[:word]
-    right_answer = MemoCard.where(translation: "world" , id: word_id)
+  def ajax_try()  #problem - after one click of true , every click becomes true
+    word_in_page = params[:word_temp]
+    word_in_german = params[:word_in_german]
+    right_answer = MemoCard.where(translation: word_in_page , word: word_in_german)
     if right_answer.empty?
       respond_to do |format|
         format.json { render json: {answer:"false"} }

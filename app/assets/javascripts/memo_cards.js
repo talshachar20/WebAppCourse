@@ -3,11 +3,11 @@
  // You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).on("click" ,"#answer1",function(){
+$(document).on("click" ,".answer",function(){
     $.ajax({ type: 'GET',
-        url: '4/ajax_try' ,
+        url: '1/ajax_try' ,
         dataType: "json",
-        data: {"word": $("#answer1").text() , 'id_of_word': '1' },
+        data: {"word_temp": $("#answer1").text().trim() , "word_in_german": $("#question").text().trim()},
         error: function(){
            alert("oops!");
         },
