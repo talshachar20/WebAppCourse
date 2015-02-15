@@ -3,6 +3,7 @@ class MemoCardsController < ApplicationController
 
   # GET /memo_cards
   # GET /memo_cards.json
+  #layout "random_card"
   def index
     @memo_cards = MemoCard.all
   end
@@ -19,6 +20,7 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards/1.json
   def show
     @random_array = get_four_random_words
+    @word_id_array = MemoCard.select("id")
   end
 
   # GET /memo_cards/new
@@ -70,17 +72,19 @@ class MemoCardsController < ApplicationController
     end
   end
 
-  def ajax_try()  #problem - after one click of true , every click becomes true
+  def check_answer()
     word_in_page = params[:word_temp]
     word_in_german = params[:word_in_german]
-    right_answer = MemoCard.where(translation: word_in_page , word: word_in_german)
+    right_answer = MemoCard.select("id").where(translation: word_in_page , word: word_in_german)
+    answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
+    next_answer = get_next_word_id(answer_id)
     if right_answer.empty?
       respond_to do |format|
-        format.json { render json: {answer:"false"} }
+        format.json { render json: {answer:"false" , nextid:next_answer} }
       end
     else
       respond_to do |format|
-        format.json { render json: {answer:"true"} }
+        format.json { render json: {answer:"true" , nextid:next_answer} }
       end
     end
   end
@@ -97,5 +101,12 @@ class MemoCardsController < ApplicationController
       params.require(:memo_card).permit(:word , :translation, :word_id)
     end
 
-
+    def get_next_word_id(answer_id)
+      next_word_id = MemoCard.select("id").where("id >" + answer_id).first.to_param
+      if next_word_id == nil
+        return next_word_id = MemoCard.select("id").where("id <" + answer_id).first.to_param
+      else
+        return next_word_id
+      end
+    end
 end

@@ -1,0 +1,16 @@
+<p> this is render partial </p>
+
+<p>
+  <strong>Word:</strong>
+</p>
+<p id="question"> <%= @memo_card.word %> </p>
+
+<table>
+  <td id="answer1" class="answer"> <%= @random_array.first  %> </td>
+  <td id="answer2" class="answer"> <%= @random_array.second  %> </td>
+  <td id="answer3" class="answer"> <%= @random_array.third  %> </td>
+  <td id="answer4" class="answer"> <%= @random_array.fourth  %> </td>
+</table>
+
+<%= link_to 'Back', memo_cards_path %>
+

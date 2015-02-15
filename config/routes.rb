@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :memo_cards do
     member do
-      get :ajax_try
+      get :check_answer
     end
   end
 

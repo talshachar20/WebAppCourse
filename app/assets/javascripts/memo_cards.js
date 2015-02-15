@@ -4,16 +4,20 @@
 
 
 $(document).on("click" ,".answer",function(){
+
     clicked_answer = $(this).text().trim()  //retrieve the clicked answer
     $.ajax({ type: 'GET',
-        url: '1/ajax_try' ,
+        url: '1/check_answer' ,
         dataType: "json",
         data: {"word_temp": clicked_answer , "word_in_german": $("#question").text().trim()},
         error: function(){
            alert("oops!");
         },
         success: function(json) {
-            alert (clicked_answer + " " + json.answer)
+            alert (clicked_answer + " is: " + json.answer)
+            var nextid =json.nextid
+            httpUrl = '/memo_cards/' + nextid
+            self.location=httpUrl
         }
      });
 });
