@@ -23,6 +23,6 @@
 </table>
 
 <br>
-
+<div id="headsession"> <% if user_signed_in? %>  signed in as: <%= current_user.email %> <% end %> </div>
 
 <%= link_to 'New Memo card', new_memo_card_path %>
