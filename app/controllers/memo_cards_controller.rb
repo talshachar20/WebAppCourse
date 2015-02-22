@@ -79,10 +79,12 @@ class MemoCardsController < ApplicationController
     answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
     next_answer = get_next_word_id(answer_id)
     if right_answer.empty?
+      wrong_answer_to_result(answer_id)
       respond_to do |format|
         format.json { render json: {answer:"false" , nextid:next_answer} }
       end
     else
+      correct_answer_to_result(answer_id)
       respond_to do |format|
         format.json { render json: {answer:"true" , nextid:next_answer} }
       end
@@ -108,5 +110,15 @@ class MemoCardsController < ApplicationController
       else
         return next_word_id
       end
+    end
+
+    def correct_answer_to_result(answer_id)
+      the_current_user = current_user.id
+      Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 1)
+    end
+
+    def wrong_answer_to_result(answer_id)
+      the_current_user = current_user.id
+      Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0)
     end
 end

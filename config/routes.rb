@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :widgets
+  root to: "widgets#index"
   devise_for :users
   resources :false_words
 

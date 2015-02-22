@@ -41,3 +41,4 @@ gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
+gem "rspec-rails", :group => [:development, :test]
