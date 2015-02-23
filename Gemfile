@@ -42,3 +42,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
 gem "rspec-rails", :group => [:development, :test]
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+gem 'bootstrap-sass'

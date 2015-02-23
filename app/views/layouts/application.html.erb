@@ -7,15 +7,15 @@
           <%= csrf_meta_tags %>
         </head>
     <body>
-      <div id="headsession">
+      <div id="container">
+        <ul class ="nav nav-pills">
           <% if user_signed_in? %>  signed in as: <%= current_user.email %>
             <%=link_to "Sign out", destroy_user_session_path , :method => :delete %>
-               <% else %> you are log out <%= link_to('Login', new_user_session_path) %>
-               <% end %> </div>
+          <% else %> you are log out <%= link_to('Login', new_user_session_path) %>
+          <% end %>
+        </ul>
       </div>
 
-
-      <%= yield %>
-
+        <%= yield %>
     </body>
 </html>

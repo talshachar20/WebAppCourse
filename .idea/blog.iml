@@ -125,12 +125,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v4.1.5, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v4.1.5, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="actionpack-action_caching (v1.1.1, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="actionpack-page_caching (v1.0.2, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionview (v4.1.5, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v4.1.5, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v4.1.5, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v4.1.5, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v5.0.1.20140414130214, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="autoprefixer-rails (v5.1.7, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.10, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bootstrap-sass (v3.3.3, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.9, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.0.1, RVM: ruby-1.9.3-p551 [sp_sws]) [gem]" level="application" />

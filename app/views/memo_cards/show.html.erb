@@ -3,16 +3,18 @@
 <p>
   <strong>Word:</strong>
 </p>
-<p id="question"> <%= @memo_card.word %> </p>
-<table>
-    <td id="answer1" class="answer"> <%= @random_array.first  %> </td>
-    <td id="answer2" class="answer"> <%= @random_array.second  %> </td>
-    <td id="answer3" class="answer"> <%= @random_array.third  %> </td>
-    <td id="answer4" class="answer"> <%= @random_array.fourth  %> </td>
-</table>
+  <div id="container">
+      <h2> <p id="question"> <%= @memo_card.word %> </p> </h2>
+        <table id="table-format" data-toggle="table" class="table">
+          <td id="answer1" class="answer"> <%= @random_array.first %> </td>
+          <td id="answer2" class="answer"> <%= @random_array.second  %> </td>
+          <td id="answer3" class="answer"> <%= @random_array.third  %> </td>
+          <td id="answer4" class="answer"> <%= @random_array.fourth  %> </td>
+         </table>
+      </p>
+
+  </div>
 <p>
-  <strong>trans:</strong>
-  <%= @memo_card.translation %>
 </p>
 
 <%= link_to 'Edit', edit_memo_card_path(@memo_card) %> |

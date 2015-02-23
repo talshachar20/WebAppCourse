@@ -4,7 +4,10 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards
   # GET /memo_cards.json
   #layout "random_card"
+  caches_page :index #cashes word index
+
   def index
+    logger.debug "Memo cards page"
     @memo_cards = MemoCard.all
   end
 
@@ -36,7 +39,7 @@ class MemoCardsController < ApplicationController
   # POST /memo_cards.json
   def create
     @memo_card = MemoCard.new(memo_card_params)
-
+    expire_page :action => :index
     respond_to do |format|
       if @memo_card.save
         format.html { redirect_to @memo_card, notice: 'Memo card was successfully created.' }
@@ -51,6 +54,7 @@ class MemoCardsController < ApplicationController
   # PATCH/PUT /memo_cards/1
   # PATCH/PUT /memo_cards/1.json
   def update
+    expire_page :action => :index
     respond_to do |format|
       if @memo_card.update(memo_card_params)
         format.html { redirect_to @memo_card, notice: 'Memo card was successfully updated.' }
@@ -115,10 +119,12 @@ class MemoCardsController < ApplicationController
     def correct_answer_to_result(answer_id)
       the_current_user = current_user.id
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 1)
+      logger.debug "True result entered to user id:  #{the_current_user}"
     end
 
     def wrong_answer_to_result(answer_id)
       the_current_user = current_user.id
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0)
+      logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
 end
