@@ -23,4 +23,24 @@ $(document).on("click" ,".answer",function(){
      });
 });
 
+$(document).on("click" ,"#calculate",function(){
+    $.ajax({ type: 'GET',
+        url: '1/count_for_result' ,
+        dataType: "json",
+        data: {},
+        error: function(){
+            alert("oops!");
+        },
+        success: function(json) {
+            alert ("Right answers: " + json.right_answers + " Wrong answers: " + json.wrong_answers)
+            if (json.right_answers > json.wrong_answers) {
+                alert ("Good Kooshkoosh!")
+            }
+            else {
+                alert("bad kooshkoosh !")
+            }
+        }
+    });
+});
+
 

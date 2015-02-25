@@ -95,6 +95,14 @@ class MemoCardsController < ApplicationController
     end
   end
 
+  def count_for_result()
+    result_correct = Results.select(:id).where(is_correct: 1 , user_id: current_user).length.to_s
+    result_wrong = Results.select(:id).where(is_correct: 0 , user_id: current_user).length.to_s
+    respond_to do |format|
+      format.json { render json: {right_answers: result_correct, wrong_answers: result_wrong} }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -127,4 +135,5 @@ class MemoCardsController < ApplicationController
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0)
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
+
 end

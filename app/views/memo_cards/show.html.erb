@@ -6,14 +6,19 @@
   <div id="container">
       <h2> <p id="question"> <%= @memo_card.word %> </p> </h2>
         <table id="table-format" data-toggle="table" class="table">
-          <td id="answer1" class="answer"> <%= @random_array.first %> </td>
-          <td id="answer2" class="answer"> <%= @random_array.second  %> </td>
+          <abbr> <td id="answer1" class="answer"> <%= @random_array.first %> </td> </abbr>
+          <abbr> <td id="answer2" class="answer"> <%= @random_array.second  %> </td> </abbr>
           <td id="answer3" class="answer"> <%= @random_array.third  %> </td>
           <td id="answer4" class="answer"> <%= @random_array.fourth  %> </td>
          </table>
       </p>
-
   </div>
+
+    <div id="myAlert" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <strong>Choose the correct answer!</strong>
+       <div id="calculate"> calculate </div>
+</div>
 <p>
 </p>
 
