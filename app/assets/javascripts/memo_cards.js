@@ -32,12 +32,12 @@ $(document).on("click" ,"#calculate",function(){
             alert("oops!");
         },
         success: function(json) {
-            alert ("Right answers: " + json.right_answers + " Wrong answers: " + json.wrong_answers)
+            $("#results").html("Right answers: " + json.right_answers + " Wrong answers: " + json.wrong_answers)
             if (json.right_answers > json.wrong_answers) {
-                alert ("Good Kooshkoosh!")
+                $("#calculate").html("Good KooshKoosh      " + "<img src='/assets/s3.png' />")
             }
             else {
-                alert("bad kooshkoosh !")
+                $("#calculate").html("Bad Kooshkoosh !     " + "<img src='/assets/s2.jpg' />")
             }
         }
     });
