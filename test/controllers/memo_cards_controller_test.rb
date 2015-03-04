@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class MemoCardsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @memo_card = memo_cards(:one)
   end
@@ -46,4 +48,5 @@ class MemoCardsControllerTest < ActionController::TestCase
 
     assert_redirected_to memo_cards_path
   end
+
 end

@@ -1,6 +1,9 @@
 require 'test_helper'
 
+
 class FalseWordsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @false_word = false_words(:one)
   end
