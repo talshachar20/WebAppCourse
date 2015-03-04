@@ -4,7 +4,7 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards
   # GET /memo_cards.json
   #layout "random_card"
-  caches_page :index #cashes word index
+  #caches_page :index #cashes word index
 
   def index
     logger.debug "Memo cards page"
@@ -126,13 +126,15 @@ class MemoCardsController < ApplicationController
 
     def correct_answer_to_result(answer_id)
       the_current_user = current_user.id
-      Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 1)
+      session_id = session[:session_id]
+      Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 1 , :session_id => session_id)
       logger.debug "True result entered to user id:  #{the_current_user}"
     end
 
     def wrong_answer_to_result(answer_id)
       the_current_user = current_user.id
-      Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0)
+      session_id = session[:session_id]
+      Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
 
