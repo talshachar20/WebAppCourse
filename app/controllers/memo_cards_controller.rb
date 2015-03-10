@@ -12,10 +12,11 @@ class MemoCardsController < ApplicationController
   end
 
   def get_four_random_words
-    false_words = FalseWord.all
-    random_word = false_words.sample.word  #random false word
-    random_word_second = false_words.sample.word
-    random_word_third = false_words.sample.word
+    #false_words = FalseWord.all
+    false_words = MemoCard.where.not(id: @memo_card.id)
+    random_word = false_words.sample.translation  #random false word
+    random_word_second = false_words.sample.translation
+    random_word_third = false_words.sample.translation
     true_word = @memo_card.translation  #the correct answer
     return answers = [random_word , random_word_second, random_word_third , true_word].shuffle
   end
