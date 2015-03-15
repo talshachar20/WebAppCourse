@@ -1,10 +1,11 @@
-<h1>Listing memo_cards</h1>
+<h1 id="mainTitle">Listing memo_cards</h1>
 
 <table>
   <thead>
     <tr>
       <th>Word</th>
       <th>Id</th>
+      <th>correct answers</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,7 +14,8 @@
     <% @memo_cards.each do |memo_card| %>
       <tr>
         <td><%= memo_card.word %></td>
-        <td><%= memo_card.id %></td>
+        <td id="memo_card_id"><%= memo_card.id %></td>
+        <td id="statusBar"> <%= counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1)).length.to_s%> </td>
         <td><%= link_to 'Show', memo_card %></td>
         <td><%= link_to 'Edit', edit_memo_card_path(memo_card) %></td>
         <td><%= link_to 'Destroy', memo_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>

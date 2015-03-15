@@ -21,6 +21,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :memo_cards do
+    collection do
+      get :get_new_status_for_user
+    end
+  end
+
+  devise_scope :user do
+    get '/sign-in' => "devise/sessions#new", :as => :login
+  end
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

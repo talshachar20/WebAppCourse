@@ -44,3 +44,8 @@ $(document).on("click" ,"#calculate",function(){
 });
 
 
+
+
+
+
+

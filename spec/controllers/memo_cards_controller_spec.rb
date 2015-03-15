@@ -1,10 +1,10 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe MemoCardsController, :type => :controller do
     before do
       @memo_card = MemoCard.new(:word => 'test' , :word_id => 1)
       @memo_cards = MemoCard.all
-
     end
 
     context  "first rspec" do
@@ -13,7 +13,7 @@ RSpec.describe MemoCardsController, :type => :controller do
       end
     end
 
-    describe "#get_four_random_words" do
+    describe "#test" do
       context "db values" do
         it "returns memo card if" do
           expect(@memo_card.word_id).to eq(1)
@@ -22,9 +22,21 @@ RSpec.describe MemoCardsController, :type => :controller do
           @memo_card.update(:word_id => 3)
           expect(@memo_card.word_id).to eq(3)
         end
-        it "calls method" do
-          @memo_card.check_answer.should include 'fdd'
+      end
+
+      context "new one"  do
+        it "should add new memo card" do
+          @second_memo = MemoCard.new(:word => 'test2' , :word_id => 2)
+          @memo_cards_library = [@memo_card , @second_memo]
+          expect(@second_memo.word).to eq("test2")
+          expect(@memo_cards_library.length).to eq(2)
         end
+
+        it "should mock" do
+          theArray = MemoCardsController.new.get_four_random_words
+          theArray.should eq(true)
+        end
+
       end
     end
  end

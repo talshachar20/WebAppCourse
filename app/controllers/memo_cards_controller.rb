@@ -5,11 +5,14 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards.json
   #layout "random_card"
   #caches_page :index #cashes word index
+  before_filter :authenticate_user!
 
   def index
     logger.debug "Memo cards page"
     @memo_cards = MemoCard.all
   end
+
+
 
   def get_four_random_words
     #false_words = FalseWord.all
@@ -35,7 +38,6 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards/1/edit
   def edit
   end
-
   # POST /memo_cards
   # POST /memo_cards.json
   def create
@@ -105,8 +107,15 @@ class MemoCardsController < ApplicationController
     end
   end
 
-
-
+  def get_new_status_for_user
+    current_user_id = current_user.id
+    @memo_cards.each do |memo_card|
+      counter = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user_id , is_correct: 1)).length.to_s
+      respond_to do |format|
+        format.json { render json: {counter: counters} }
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -141,5 +150,7 @@ class MemoCardsController < ApplicationController
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
+
+
 
 end
