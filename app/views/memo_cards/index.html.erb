@@ -15,7 +15,15 @@
       <tr>
         <td><%= memo_card.word %></td>
         <td id="memo_card_id"><%= memo_card.id %></td>
-        <td id="statusBar"> <%= counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1)).length.to_s%> </td>
+        <td id="statusBar" class="hidden"> <%= @counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1)).length %> </td>
+        <%     if (@counterer.to_i > 0 and @counterer < 3)       %>
+        <%           @counterer_status = "More Practice"         %>
+        <%     elsif  (@counterer.to_i == 0 )                       %>
+        <%          @counterer_status = "New word!"              %>
+        <%     else                                              %>
+        <%          @counterer_status = "You Know it"            %>
+        <%     end                                               %>
+        <td id="realStatus"> |  state : <%=  @counterer_status %> </td>
         <td><%= link_to 'Show', memo_card %></td>
         <td><%= link_to 'Edit', edit_memo_card_path(memo_card) %></td>
         <td><%= link_to 'Destroy', memo_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>

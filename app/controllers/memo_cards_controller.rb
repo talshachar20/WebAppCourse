@@ -7,6 +7,8 @@ class MemoCardsController < ApplicationController
   #caches_page :index #cashes word index
   before_filter :authenticate_user!
 
+
+
   def index
     logger.debug "Memo cards page"
     @memo_cards = MemoCard.all
