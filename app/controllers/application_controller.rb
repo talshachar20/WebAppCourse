@@ -14,5 +14,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def profile
+    puts "sddsdssd"
+  end
+
+
 
 end

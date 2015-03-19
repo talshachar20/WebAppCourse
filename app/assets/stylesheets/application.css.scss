@@ -1,3 +1,4 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 body {
@@ -9,5 +10,23 @@ h1 {
   text-align: center;
 }
 h2 {
+  text-align: center;
+}
+#newDesign {
+  vertical-align: bottom;
+  border: 2px solid black;
+  text-align: center;
+  background: cornflowerblue;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+#tableHead {
+  text-decoration-color: saddlebrown;
+}
+
+#mainTitle {
+  color: darkslateblue;
   text-align: center;
 }

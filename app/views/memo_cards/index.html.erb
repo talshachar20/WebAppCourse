@@ -1,20 +1,18 @@
-<h1 id="mainTitle">Listing memo_cards</h1>
 
-<table>
-  <thead>
+<table id="newDesign">
+  <thead id="tableHead">
     <tr>
       <th>Word</th>
       <th>Id</th>
-      <th>correct answers</th>
+      <th>word status: </th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
+  <tbody >
     <% @memo_cards.each do |memo_card| %>
       <tr>
         <td><%= memo_card.word %></td>
-        <td id="memo_card_id"><%= memo_card.id %></td>
+        <td id="memo_card_id"><%= memo_card.id %> &nbsp &nbsp &nbsp</td>
         <td id="statusBar" class="hidden"> <%= @counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1)).length %> </td>
         <%     if (@counterer.to_i > 0 and @counterer < 3)       %>
         <%           @counterer_status = "More Practice"         %>
@@ -23,10 +21,14 @@
         <%     else                                              %>
         <%          @counterer_status = "You Know it"            %>
         <%     end                                               %>
-        <td id="realStatus"> |  state : <%=  @counterer_status %> </td>
-        <td><%= link_to 'Show', memo_card %></td>
-        <td><%= link_to 'Edit', edit_memo_card_path(memo_card) %></td>
-        <td><%= link_to 'Destroy', memo_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td id="realStatus">   state : <%=  @counterer_status %> </td>
+        <td> &nbsp &nbsp &nbsp &nbsp </td>
+        <td><%= link_to 'Show ', memo_card %> </td>
+        <td> &nbsp &nbsp &nbsp &nbsp </td>
+        <td><%= link_to 'Edit ', edit_memo_card_path(memo_card) %></td>
+        <td> &nbsp  &nbsp  &nbsp &nbsp</td>
+        <td><%= link_to 'Delete', memo_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> &nbsp </td>
       </tr>
     <% end %>
   </tbody>
