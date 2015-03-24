@@ -17,7 +17,7 @@
         <li> <a href="#messages"  data-toggle="tab">About</a> </li>
         <div class='tab-content'>
           <div class="tab-pane active" id="home"> KooshKoosh learns Hebrew v1 </div>
-          <div class="tab-pane fade" id="profile"> My status is:  </div>
+          <div class="tab-pane fade" id="profile"> My status is:  <% if user_signed_in? %> Good ! <% else %> logout <% end %>  ! </div>
           <div class="tab-pane fade" id="messages"> KooshKoosh learns hebrew. created by:Tal </div>
         </div>
       </ul>

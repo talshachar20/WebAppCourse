@@ -48,3 +48,5 @@ gem 'bootstrap-sass'
 gem 'database_cleaner'
 gem 'twitter-bootstrap-rails'
 gem 'autoprefixer-rails'
+gem 'mocha'
+gem "pry", :group => [:development, :test]
