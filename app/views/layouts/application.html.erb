@@ -17,7 +17,16 @@
         <li> <a href="#messages"  data-toggle="tab">About</a> </li>
         <div class='tab-content'>
           <div class="tab-pane active" id="home"> KooshKoosh learns Hebrew v1 </div>
-          <div class="tab-pane fade" id="profile"> My status is:  <% if user_signed_in? %> Good ! <% else %> logout <% end %>  ! </div>
+          <div class="tab-pane fade" id="profile">
+            <div id="container">
+              <ul class ="nav nav-pills">
+                <% if user_signed_in? %>  signed in as: <%= current_user.email %>
+                    <%=link_to "Sign out", destroy_user_session_path , :method => :delete %>
+                <% else %> you are log out <%= link_to('Login', new_user_session_path) %> or <%= link_to('Sign up', new_user_registration_path) %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
           <div class="tab-pane fade" id="messages"> KooshKoosh learns hebrew. created by:Tal </div>
         </div>
       </ul>
@@ -27,14 +36,7 @@
 
 
 
-    <div id="container">
-        <ul class ="nav nav-pills">
-          <% if user_signed_in? %>  signed in as: <%= current_user.email %>
-            <%=link_to "Sign out", destroy_user_session_path , :method => :delete %>
-          <% else %> you are log out <%= link_to('Login', new_user_session_path) %> or <%= link_to('Sign up', new_user_registration_path) %>
-        <% end %>
-        </ul>
-      </div>
+
 
         <%= yield %>
     </body>
