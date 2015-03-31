@@ -11,12 +11,14 @@ h1 {
 }
 h2 {
   text-align: center;
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: cornsilk;
 }
 #newDesign {
   vertical-align: bottom;
   border: 2px solid black;
   text-align: center;
-  background: cornflowerblue;
+  background: cornsilk;
     margin-left:auto;
     margin-right:auto;
 
@@ -27,7 +29,9 @@ h2 {
 }
 
 #mainTitle {
-  color: darkslateblue;
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  color: cornsilk;
+  text-shadow: 1px 2px #333577;
   text-align: center;
 }
 
@@ -41,12 +45,18 @@ h2 {
   background-color: red;
   height: 350px;
   width: 470px;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.50);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.50);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.50);
 }
-
-
-
 
 #main-image {
   left: 50%;
   align-content: center;
 }
+
+.answer:hover{
+  cursor:pointer;
+}
+
+
