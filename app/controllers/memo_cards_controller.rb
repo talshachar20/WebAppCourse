@@ -26,6 +26,7 @@ class MemoCardsController < ApplicationController
     true_word = @memo_card.translation  #the correct answer
     return answers = [random_word , random_word_second, random_word_third , true_word].shuffle
   end
+  # TODO: get definition between words and phrases - add type of memo_card
   # GET /memo_cards/1
   # GET /memo_cards/1.json
   def show
@@ -153,6 +154,7 @@ class MemoCardsController < ApplicationController
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
+#     TODO: unite answer to result to one method
 
 
 

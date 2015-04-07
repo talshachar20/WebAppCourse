@@ -2,7 +2,6 @@
 // All this logic will automatically be available in application.js.
  // You can use CoffeeScript in this file: http://coffeescript.org/
 
-
 $(document).on("click" ,".answer",function(){
 
     clicked_answer = $(this).text().trim()  //retrieve the clicked answer
@@ -14,7 +13,7 @@ $(document).on("click" ,".answer",function(){
            alert("oops!");
         },
         success: function(json) {
-            alert (clicked_answer + " is: " + json.answer)
+            $("#theAnswerIs").html(clicked_answer + " is: " + json.answer)
             var nextid =json.nextid
             httpUrl = '/memo_cards/' + nextid
             if (json.answer == "true")
