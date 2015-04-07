@@ -44,7 +44,7 @@ h2 {
   border-radius: 25px;
   background-color: red;
   height: 350px;
-  width: 470px;
+  width: 520px;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.50);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.50);
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.50);
@@ -59,4 +59,11 @@ h2 {
   cursor:pointer;
 }
 
+#calculate:hover{
+  cursor:pointer;
+}
+
+#text-status{
+  text-decoration-color: saddlebrown;
+}
 
