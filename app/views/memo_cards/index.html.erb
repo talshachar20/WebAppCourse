@@ -13,7 +13,7 @@
       <tr>
         <td><%= memo_card.word %></td>
         <td id="memo_card_id"><%= memo_card.id %> &nbsp &nbsp &nbsp</td>
-        <td id="statusBar" class="hidden"> <%= @counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1 , created_at: 3.weeks.ago..Date.today)).length %> </td>
+        <td id="statusBar" class="hidden"> <%= @counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1 , created_at: 3.weeks.ago..Time.now)).length %> </td>
         <%     if (@counterer.to_i > 0 and @counterer < 3)       %>
         <%           @counterer_status = "More Practice"         %>
         <%     elsif  (@counterer.to_i == 0 )                       %>
