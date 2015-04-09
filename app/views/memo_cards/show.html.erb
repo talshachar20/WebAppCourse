@@ -5,7 +5,7 @@
 </p>
   <div id="container">
       <h2> <p id="question"> <%= @memo_card.word %> </p> </h2>
-        <table id="table-format" data-toggle="table" class="table">
+        <table id="table-format" data-toggle="table" class="table" border="2">
           <abbr> <td id="answer1" class="answer"> <%= @random_array.first %> </td> </abbr>
           <abbr> <td id="answer2" class="answer"> <%= @random_array.second  %> </td> </abbr>
           <td id="answer3" class="answer"> <%= @random_array.third  %> </td>
@@ -14,7 +14,7 @@
       </p>
   </div>
 
-<div>    <a href="#" class="close" data-dismiss="alert" id="theAnswerIs">&times;</a> </div>
+<div id="theAnswerIs">    <a href="#" class="close" data-dismiss="alert" id="theAnswerIs">&times;</a> </div>
 <!--TODO: change design for TheANswerIS and add sleep for true answer-->
 
     <div id="myAlert" class="alert alert-warning">
