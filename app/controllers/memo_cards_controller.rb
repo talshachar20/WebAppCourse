@@ -17,7 +17,7 @@ class MemoCardsController < ApplicationController
 
 
 
-  def get_four_random_words
+  def get_four_random_words #TODO : pull words by type
     #false_words = FalseWord.all
     false_words = MemoCard.where.not(id: @memo_card.id)
     random_word = false_words.sample.translation  #random false word

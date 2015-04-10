@@ -8,7 +8,8 @@
     </tr>
   </thead>
   <tbody >
-    <% @memo_cards.each do |memo_card| %>
+  <div hidden="true"> <%= user_type_id = User.select("user_type").where(email: current_user.email) %> </div>
+    <% @memo_cards.where(lang_id: user_type_id).each do |memo_card| %>
       <tr>
         <td><%= memo_card.word %> &nbsp &nbsp </td>
         <td id="statusBar" class="hidden"> <%= @counterer = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user.id , is_correct: 1 , created_at: 3.weeks.ago..Time.now)).length %> </td>
