@@ -19,7 +19,8 @@ class MemoCardsController < ApplicationController
 
   def get_four_random_words #TODO : pull words by type
     #false_words = FalseWord.all
-    false_words = MemoCard.where.not(id: @memo_card.id)
+    false_words = MemoCard.where.not(id: @memo_card.id ).where(lang_id: current_user.user_type)
+    #false_words = MemoCard.where("id = " , [@memo_card.id]  )
     random_word = false_words.sample.translation  #random false word
     random_word_second = false_words.sample.translation
     random_word_third = false_words.sample.translation
@@ -133,9 +134,9 @@ class MemoCardsController < ApplicationController
     end
 
     def get_next_word_id(answer_id)
-      next_word_id = MemoCard.select("id").where("id >" + answer_id).first.to_param
+      next_word_id = MemoCard.select("id").where("id >" + answer_id).where(lang_id: current_user.user_type).first.to_param
       if next_word_id == nil
-        return next_word_id = MemoCard.select("id").where("id <" + answer_id).first.to_param
+        return next_word_id = MemoCard.select("id").where("id <" + answer_id).where(lang_id: current_user.user_type).first.to_param
       else
         return next_word_id
       end
