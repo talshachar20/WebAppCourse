@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410102441) do
+ActiveRecord::Schema.define(version: 20150415154748) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20150410102441) do
     t.integer  "word_id"
     t.text     "word"
     t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "languages", force: true do |t|
+    t.string   "language"
+    t.integer  "lang_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
