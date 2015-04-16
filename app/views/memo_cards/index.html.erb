@@ -24,9 +24,13 @@
         <td> &nbsp &nbsp &nbsp &nbsp </td>
         <td><%= link_to 'Test yourself ', memo_card %>  </td>
         <td> &nbsp &nbsp &nbsp &nbsp </td>
-        <td><%= link_to 'Edit ', edit_memo_card_path(memo_card) %></td>
+        <% if (current_user.admin?) %>
+            <td><%= link_to 'Edit ', edit_memo_card_path(memo_card) %></td>
+        <% end %>
         <td> &nbsp  &nbsp  &nbsp &nbsp</td>
-        <td><%= link_to 'Delete', memo_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if (current_user.admin?) %>
+            <td><%= link_to 'Delete', memo_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         <td> &nbsp </td>
       </tr>
     <% end %>
