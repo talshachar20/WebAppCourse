@@ -44,11 +44,6 @@ RSpec.describe MemoCardsController, :type => :controller do
           expect(@memo_cards_library.length).to eq(2)
         end
 
-        it "should mock @memo_card" do
-          expect(@daaay).to eq(2)
-        end
-
-
       end
     end
  end

@@ -50,3 +50,5 @@ gem 'twitter-bootstrap-rails'
 gem 'autoprefixer-rails'
 gem 'mocha'
 gem "pry", :group => [:development, :test]
+gem 'rspec-rails'
+gem 'capybara' , :git => 'git://github.com/jnicklas/capybara.git'
