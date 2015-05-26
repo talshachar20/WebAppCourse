@@ -52,3 +52,8 @@ gem 'mocha'
 gem "pry", :group => [:development, :test]
 gem 'rspec-rails'
 gem 'capybara' , :git => 'git://github.com/jnicklas/capybara.git'
+gem 'selenium-webdriver'
+gem  'rspec-expectations'
+gem 'minitest'
+gem 'rack-test', group: :test
+gem 'test-unit'
