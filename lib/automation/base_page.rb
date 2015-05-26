@@ -1,18 +1,19 @@
+require 'selenium-webdriver'
 
 class Base
-    attr_reader :driver
 
-    def initialize(driver)
-      @driver = driver
+    def initialize
+      @driver = Selenium::WebDriver.for :chrome #, :profile => profile
+      ENV['base_url'] = 'http://0.0.0.0:3000/'
     end
 
     def visit(url='/')
-      driver.get ENV['base_url']
+      @driver.get ENV['base_url']
       #driver.get('http://0.0.0.0:3000/')
     end
 
     def find(locator)
-      driver.find_element(locator)
+      @driver.find_element(locator)
     end
 
     def clear(locator)
@@ -25,7 +26,7 @@ class Base
 
 
     def displayed?(locator)
-      driver.find_element(locator).displayed?
+      @driver.find_element(locator).displayed?
       true
     rescue Selenium::WebDriver::Error::NoSuchElementError
       false
@@ -36,13 +37,11 @@ class Base
     end
 
     def title
-      driver.title
+      @driver.title
     end
 
     def wait_for(seconds=5)
       Selenium::WebDriver::Wait.new(:timeout => seconds).until { yield }
     end
-
-
 
 end
