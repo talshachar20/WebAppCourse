@@ -1,21 +1,47 @@
 require_relative 'base_page'
-#require_relative 'test_helper'
+require 'pry'
+require 'capybara/node/finders'
 
 class MemoCardPage < Base
 
-  BUTTON        = { xpath: '/html/body/div[1]/ul/li[2]'}
-  #SELECTORS[:acp_account_page_login_data] = Selector.new(:button, :xpath, '//*[@id="navi-side"]/ul/li[1]/a')
-  SEARCH_BOX_SUBMIT = { id: 'gbqfb'     }
-  UPPERPART = { xpath: '//*[@id="text-status"]/a[1]'  }
+  MY_STATUS_BUTTON        = { xpath: '/html/body/div[1]/ul/li[2]'}
+  HOME_BUTTON = { xpath: '/html/body/div[1]/ul/li[1]/a'}
+  ABOUT_BUTTON =  {xpath: '/html/body/div[1]/ul/li[3]/a'}
+  UPPERPART = { id: 'messages'  }
+  ALL_PAGE_TEXT = {xpath: '//*'}
+  LOGIN_LINK = {id: 'login_link'}
 
   def initialize
     super
     visit
   end
 
+
+  def get_my_status_button
+    find MY_STATUS_BUTTON
+  end
+
   def click_on_my_status
-    my_status_button = find BUTTON
-    my_status_button.click
+    puts "clicking on my status button"
+    get_my_status_button.click
+  end
+
+  def get_home_page_button
+    find HOME_BUTTON
+  end
+
+  def click_on_my_homepage_button
+    puts "clicking on homepage button"
+    get_home_page_button.click
+  end
+
+  def get_about_button
+    find ABOUT_BUTTON
+  end
+
+  def click_on_about_button
+    puts "clicking on about button"
+    get_about_button.click
   end
 
   def search_result_present?(search_result)
@@ -27,10 +53,17 @@ class MemoCardPage < Base
     end
   end
 
-  def get_upper_part_text
-    upperpart_text = find UPPERPART
-    return upperpart_text.text
+  def get_upper_part
+    find ALL_PAGE_TEXT
   end
 
+  def get_login_link
+    return 'http://0.0.0.0:3000/users/sign_in'
+  end
+
+  def navigate_to_login_page
+    login =  find LOGIN_LINK
+    login.click
+  end
 end
 
