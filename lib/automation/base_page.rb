@@ -10,7 +10,7 @@ class Base
       @@driver = driver
     end
 
-    def visit(url='/')
+    def visit_page(url='/')
       @@driver.navigate.to ENV['base_url']
       return MemoCardPage.new(@@driver)
     end
@@ -20,7 +20,7 @@ class Base
     end
 
     def find(locator)
-      @driver.find_element(locator)
+      @@driver.find_element(locator)
     end
 
     def clear(locator)
@@ -33,7 +33,7 @@ class Base
 
 
     def displayed?(locator)
-      @driver.find_element(locator).displayed?
+      @@driver.find_element(locator).displayed?
       true
     rescue Selenium::WebDriver::Error::NoSuchElementError
       false

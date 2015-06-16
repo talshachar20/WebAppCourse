@@ -21,9 +21,8 @@ describe 'Testing expirence' do
   end
 
   it 'should do it' do
-    result = appTest.visit.get_login_link
+    result = appTest.visit_page.get_about_button
     expect(result).to be == 'tal'
   end
-
 
 end
