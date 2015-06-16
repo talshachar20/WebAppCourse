@@ -24,6 +24,7 @@ class MemoCardPage < Base
   def click_on_my_status
     puts "clicking on my status button"
     get_my_status_button.click
+    return MemoCardPage.new(@@driver)
   end
 
   def get_home_page_button
@@ -62,6 +63,7 @@ class MemoCardPage < Base
   end
 
   def navigate_to_login_page
+    puts "Navigating to login page"
     login =  find LOGIN_LINK
     login.click
     return LoginPage.new(@@driver)

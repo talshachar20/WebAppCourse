@@ -11,6 +11,7 @@ class Base
     end
 
     def visit_page(url='/')
+      puts "navigating #{ENV['base_url']} "
       @@driver.navigate.to ENV['base_url']
       return MemoCardPage.new(@@driver)
     end
@@ -29,6 +30,10 @@ class Base
 
     def type(locator, input)
       find(locator).send_keys input
+    end
+
+    def click_on(locator)
+      @@driver.find(locator).click
     end
 
 

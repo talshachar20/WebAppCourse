@@ -4,13 +4,8 @@ require_relative '../../lib/automation/base_page'
 require_relative '../../lib/automation/login_page'
 require 'capybara/rspec'
 
-describe 'Testing expirence' do
+describe 'Testing login page' do
 
-  #test "Verify_home_page" do
-  #  home_page = MemoCardPage.new
-  #  home_page.click_on_my_homepage_button
-  #  assert_match 'learns', home_page.get_upper_part.text
-  #end
   appTest = nil
   before(:each) do
     appTest = Base.new(Selenium::WebDriver.for :chrome)
@@ -20,9 +15,13 @@ describe 'Testing expirence' do
     appTest.quit
   end
 
-  it 'should do it' do
-    result = appTest.visit_page.get_about_button
-    expect(result).to be == 'tal'
+  it 'should asset url of login page' do
+    result = appTest.visit_page.click_on_my_status
+    sleep(1)
+    result = result.navigate_to_login_page
+    sleep(2)
+    result = result.get_adress
+    expect(result).to be == 'http://0.0.0.0:3000/users/sign_in'
   end
 
 end
