@@ -1,4 +1,5 @@
 require_relative 'base_page'
+require_relative 'login_page'
 require 'pry'
 require 'capybara/node/finders'
 
@@ -11,11 +12,10 @@ class MemoCardPage < Base
   ALL_PAGE_TEXT = {xpath: '//*'}
   LOGIN_LINK = {id: 'login_link'}
 
-  def initialize
-    super
-    visit
+  attr_reader :driver
+  def initialize(driver)
+    super(driver)
   end
-
 
   def get_my_status_button
     find MY_STATUS_BUTTON
@@ -64,6 +64,7 @@ class MemoCardPage < Base
   def navigate_to_login_page
     login =  find LOGIN_LINK
     login.click
+    return LoginPage.new(@@driver)
   end
 end
 
