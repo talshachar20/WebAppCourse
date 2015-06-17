@@ -8,6 +8,7 @@ class Base
 
     def initialize(driver)
       @@driver = driver
+      wait = Selenium::WebDriver::Wait.new(:timeout => 10)
     end
 
     def visit_page(url='/')
@@ -33,7 +34,7 @@ class Base
     end
 
     def click_on(locator)
-      @@driver.find(locator).click
+      find(locator).click
     end
 
 
@@ -58,6 +59,10 @@ class Base
 
     def get_adress
       @@driver.current_url
+    end
+
+    def wait_until_element_displayed(locator)
+      wait.until locator.displayed?
     end
 
 end
