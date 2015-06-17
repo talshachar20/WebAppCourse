@@ -22,6 +22,36 @@ class Base
     end
 
     def find(locator)
+      # Whenever you call `find` method you actually call it here...
+      # So this is a great location to implement a `wait` call as well, don't you think?
+      # You can implmemnt it in several ways:
+      # 1. Try a few time to find
+      # 2. Use explicit wait by selenium
+      #
+      # Examples:
+      # 
+      # Selenium wait:
+      # wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+      # wait.until { @@driver.find_element(locator) }
+      #
+      # Second option is to create this method and call it here by passing any method inside:
+      # This is the method:
+      # def try_a_few_times(how_many=5, tries=0, &block)
+      #   begin
+      #     yield
+      #   rescue Exception => exception
+      #     raise exception if tries > how_many
+      #     sleep 1
+      #     try_a_few_times how_many, tries + 1, &block
+      #   end
+      # end
+      #
+      # This is how you will call it:
+      #
+      #
+      # try_a_few_times do
+      #   @@driver.find_element(locator)
+      # end
       @@driver.find_element(locator)
     end
 
