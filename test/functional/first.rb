@@ -37,11 +37,10 @@ describe 'Testing login page' do
 
     it 'should login with credentials' do
       result = appTest.visit_page.click_on_my_status
-      sleep(1)
       result  = result.navigate_to_login_page
       sleep(2)
       result.type_user_mail(entry_data[:user_email])
-      result.type_password("password")
+      result.type_password(entry_data[:user_email])
       result.submit_login
     end
   end

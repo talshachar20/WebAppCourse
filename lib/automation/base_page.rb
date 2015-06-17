@@ -3,6 +3,18 @@ require 'capybara/rspec'
 require_relative '../../lib/automation/memo_card_page'
 
 class Base
+
+   def try_a_few_times(how_many=5, tries=0, &block)
+     begin
+       sleep(1)
+       yield
+     rescue Exception => exception
+       raise exception if tries > how_many
+       sleep 2
+       try_a_few_times how_many, tries + 1, &block
+     end
+   end
+
     @@driver = nil
     ENV['base_url'] = 'http://0.0.0.0:3000/'
 
@@ -22,7 +34,9 @@ class Base
     end
 
     def find(locator)
-      @@driver.find_element(locator)
+      try_a_few_times do
+         @@driver.find_element(locator)
+      end
     end
 
     def clear(locator)
