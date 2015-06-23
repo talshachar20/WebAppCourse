@@ -13,7 +13,7 @@ describe 'Testing login page' do
   #TODO - configure db cleaner
 
   entry_data = {  #factory doesn't take from test db #TODO fix it
-      :user_email => "tazos123@gmail.com",
+      :user_email => "tal.shachar12@gmail.com",
       :user_password => "tazos128"
   }
 
@@ -43,9 +43,9 @@ describe 'Testing login page' do
       sleep(2)
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
-      binding.pry
       result.submit_login
-      result.click_on_about_button
+      sleep(2)
+      result = result.new_design_status
     end
   end
 end

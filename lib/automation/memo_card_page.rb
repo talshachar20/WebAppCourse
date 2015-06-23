@@ -11,6 +11,7 @@ class MemoCardPage < Base
   UPPERPART = { id: 'messages'  }
   ALL_PAGE_TEXT = {xpath: '//*'}
   LOGIN_LINK = {id: 'login_link'}
+  NEW_DESIGN_TEXT = {id: 'newDesign'}
 
   attr_reader :driver
   def initialize(driver)
@@ -67,6 +68,10 @@ class MemoCardPage < Base
     login =  find LOGIN_LINK
     login.click
     return LoginPage.new(@@driver)
+  end
+
+  def new_design_status
+    find NEW_DESIGN_TEXT
   end
 end
 

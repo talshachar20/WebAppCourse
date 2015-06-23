@@ -1,4 +1,5 @@
 require_relative 'base_page'
+require_relative '../../lib/automation/memo_card_page'
 require 'pry'
 
 class LoginPage < Base
@@ -32,7 +33,10 @@ class LoginPage < Base
     puts 'submit login'
      click_on SUBMIT
      if get_adress == 'http://0.0.0.0:3000/memo_cards'
+       puts 'go into main page'
        return MemoCardPage.new(@@driver)
+     else
+       puts 'NoNO'
      end
     #TODO - add new object to main page
   end
