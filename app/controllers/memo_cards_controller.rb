@@ -156,7 +156,4 @@ class MemoCardsController < ApplicationController
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
 #     TODO: unite answer to result to one method
-
-
-
 end

@@ -17,18 +17,23 @@ class LoginPage < Base
   def type_user_mail(user_mail)
     puts 'typing #{user_mail} as user mail'
     user_mail_field = USER_MAIL_LOGIN
+    clear user_mail_field
     type(user_mail_field, user_mail)
   end
 
   def type_password(password)
     puts 'typing #{password} as password'
     user_password_field = USER_PASSWORD
+    clear user_password_field
     type(user_password_field, password)
   end
 
   def submit_login
     puts 'submit login'
      click_on SUBMIT
+     if get_adress == 'http://0.0.0.0:3000/memo_cards'
+       return MemoCardPage.new(@@driver)
+     end
     #TODO - add new object to main page
   end
 end

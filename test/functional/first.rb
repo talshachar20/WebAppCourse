@@ -3,18 +3,20 @@ require_relative '../test_helper'
 require_relative '../../lib/automation/base_page'
 require_relative '../../lib/automation/login_page'
 require 'capybara/rspec'
+require_relative '../../spec/spec_helper'
 
 describe 'Testing login page' do
+  FactoryGirl.create(:languages)
+  FactoryGirl.create(:user)
   #TODO - configure wait element
   #TODO - configure tags
   #TODO - configure db cleaner
-  #TODO factories
-  #TODO extra elemetns locators
 
-  entry_data = {
-      :user_email => "tal_shachar@gmail.com",
-      :user_password => "123456"
+  entry_data = {  #factory doesn't take from test db #TODO fix it
+      :user_email => "tazos123@gmail.com",
+      :user_password => "tazos128"
   }
+
 
 
   appTest = nil
@@ -40,8 +42,10 @@ describe 'Testing login page' do
       result  = result.navigate_to_login_page
       sleep(2)
       result.type_user_mail(entry_data[:user_email])
-      result.type_password(entry_data[:user_email])
+      result.type_password(entry_data[:user_password])
+      binding.pry
       result.submit_login
+      result.click_on_about_button
     end
   end
 end

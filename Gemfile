@@ -57,3 +57,6 @@ gem  'rspec-expectations'
 gem 'minitest'
 gem 'rack-test', group: :test
 gem 'test-unit'
+group :test do
+  gem 'factory_girl_rails', :require => false
+end
