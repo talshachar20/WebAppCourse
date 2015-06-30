@@ -36,7 +36,7 @@ class LoginPage < Base
        puts 'go into main page'
        return MemoCardPage.new(@@driver)
      else
-       puts 'NoNO'
+       puts 'not valid login'
      end
     #TODO - add new object to main page
   end

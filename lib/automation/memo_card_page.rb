@@ -71,7 +71,7 @@ class MemoCardPage < Base
   end
 
   def new_design_status
-    find NEW_DESIGN_TEXT
+    text_of NEW_DESIGN_TEXT
   end
 end
 
