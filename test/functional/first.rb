@@ -8,10 +8,8 @@ require_relative '../../spec/spec_helper'
 describe 'Testing login page' do
   #RAILS_ENV=test rails s
   #bundle exec rake db:reset RAILS_ENV=test - clean db
-
   #TODO - configure wait element
   #TODO - configure tags
-  #TODO - configure db cleaner
 
   entry_data = {  #factory doesn't take from test db #TODO fix it
       :user_email => "tal.shachar16@gmail.com",
@@ -23,8 +21,11 @@ describe 'Testing login page' do
   appTest = nil
   before(:each) do
     User.destroy_all
-      FactoryGirl.create(:languages)
-  FactoryGirl.create(:user)
+    Languages.destroy_all
+    MemoCard.destroy_all
+    FactoryGirl.create(:languages)
+    FactoryGirl.create(:user)
+    FactoryGirl.create(:memo_card , :lang_id=> 1)
     appTest = Base.new(Selenium::WebDriver.for :chrome)
   end
 
@@ -49,6 +50,7 @@ describe 'Testing login page' do
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       newDesign = result.new_design_status
+      binding.pry
       newDesign.should include("Word status:")
     end
   end
