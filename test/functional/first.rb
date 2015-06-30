@@ -8,8 +8,7 @@ require_relative '../../spec/spec_helper'
 describe 'Testing login page' do
   #RAILS_ENV=test rails s
   #bundle exec rake db:reset RAILS_ENV=test - clean db
-  FactoryGirl.create(:languages)
-  FactoryGirl.create(:user)
+
   #TODO - configure wait element
   #TODO - configure tags
   #TODO - configure db cleaner
@@ -23,6 +22,9 @@ describe 'Testing login page' do
 
   appTest = nil
   before(:each) do
+    User.destroy_all
+      FactoryGirl.create(:languages)
+  FactoryGirl.create(:user)
     appTest = Base.new(Selenium::WebDriver.for :chrome)
   end
 
@@ -46,9 +48,8 @@ describe 'Testing login page' do
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
-      binding.pry
       newDesign = result.new_design_status
-      expect(newDesign).should include == 'Word'
+      newDesign.should include("Word status:")
     end
   end
 end
