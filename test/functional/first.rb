@@ -32,6 +32,7 @@ describe 'Testing login page' do
   after(:each) do
     appTest.quit
   end
+
   context 'go to the login page' do
     it 'should asset url of login page' do
       result = appTest.visit_page.click_on_my_status
@@ -50,8 +51,20 @@ describe 'Testing login page' do
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       newDesign = result.new_design_status
-      binding.pry
       newDesign.should include("Word status:")
+    end
+  end
+
+  context 'memo cards page' do
+    it 'should include one memo card' do
+      result = appTest.visit_page.click_on_my_status
+      result  = result.navigate_to_login_page
+      sleep(2)
+      result.type_user_mail(entry_data[:user_email])
+      result.type_password(entry_data[:user_password])
+      result = result.submit_login
+      num_of_memo_cards = result.num_of_memo_cards
+      num_of_memo_cards.should eq(1)
     end
   end
 end

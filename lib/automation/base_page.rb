@@ -39,6 +39,10 @@ class Base
       end
     end
 
+   def find_elements(locator)
+     @@driver.find_elements(locator)
+   end
+
     def clear(locator)
       find(locator).clear
     end

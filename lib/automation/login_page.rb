@@ -1,4 +1,5 @@
 require_relative 'base_page'
+require_relative 'memo_card_index_page'
 require_relative '../../lib/automation/memo_card_page'
 require 'pry'
 
@@ -34,7 +35,7 @@ class LoginPage < Base
      click_on SUBMIT
      if get_adress == 'http://0.0.0.0:3000/memo_cards'
        puts 'go into main page'
-       return MemoCardPage.new(@@driver)
+       return MemoCardIndexPage.new(@@driver)
      else
        puts 'not valid login'
      end
