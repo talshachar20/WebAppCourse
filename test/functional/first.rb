@@ -16,8 +16,6 @@ describe 'Testing login page' do
       :user_password => "tazos128"
   }
 
-
-
   appTest = nil
   before(:each) do
     User.destroy_all
@@ -56,7 +54,8 @@ describe 'Testing login page' do
   end
 
   context 'memo cards page' do
-    it 'should include one memo card' do
+
+    it 'should include one memo card from the same lang_id' do
       result = appTest.visit_page.click_on_my_status
       result  = result.navigate_to_login_page
       sleep(2)
@@ -66,5 +65,20 @@ describe 'Testing login page' do
       num_of_memo_cards = result.num_of_memo_cards
       num_of_memo_cards.should eq(1)
     end
+
+    it 'should not count memo card from other lang_id' do
+        FactoryGirl.create(:memo_card, :word=> 'tal' , :translation=> 'test', :lang_id=> 2 )
+        result = appTest.visit_page.click_on_my_status
+        result  = result.navigate_to_login_page
+        sleep(2)
+        result.type_user_mail(entry_data[:user_email])
+        result.type_password(entry_data[:user_password])
+        result = result.submit_login
+        num_of_memo_cards = result.num_of_memo_cards
+        num_of_memo_cards.should eq(1)
+    end
+
   end
+
 end
+

@@ -48,6 +48,7 @@ class Base
     end
 
     def type(locator, input)
+      find(locator).clear
       find(locator).send_keys input
     end
 
