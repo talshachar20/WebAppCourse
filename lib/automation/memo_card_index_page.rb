@@ -25,7 +25,7 @@ class MemoCardIndexPage < Base
   def selector_builder(selector_string, param)
      selector = "id('newDesign')/x:tbody/x:tr/x:td[6]"
      selector_key = ':MEMO_CARD_BY_INDEX'
-     return  selector_key =>   {xpath: selector}
+     return {xpath: selector}
   end
 
   def new_design_status
