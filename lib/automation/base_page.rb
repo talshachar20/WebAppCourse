@@ -84,4 +84,8 @@ class Base
       wait.until locator.displayed?
     end
 
+    def find_element(element)
+      @@driver.find_element(element)
+    end
+
 end
