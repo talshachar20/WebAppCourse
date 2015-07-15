@@ -13,7 +13,7 @@ describe 'Testing login page' do
 
   entry_data = {  #factory doesn't take from test db #TODO fix it
       :user_email => "tal.shachar16@gmail.com",
-      :user_password => "tazos128"
+      :user_password => "tazos128",
   }
 
   appTest = nil
@@ -63,12 +63,9 @@ describe 'Testing login page' do
         result.type_user_mail(entry_data[:user_email])
         result.type_password(entry_data[:user_password])
         result = result.submit_login
-        result.choose_memo_card_by_index(1)
-        #num_of_memo_cards = result.num_of_memo_cards
-        #num_of_memo_cards.should eq(1)
+        memo_card = result.choose_memo_card_by_index(1)
+        expect(memo_card).to include("mein")
     end
-
   end
-
 end
 

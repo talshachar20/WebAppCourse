@@ -15,18 +15,12 @@ class MemoCardIndexPage < Base
 
   def initialize_selectors
     @selectors = {
-        :NEW_DESIGN_TEXT => {id: 'newDesigdn'} ,
+        :NEW_DESIGN_TEXT => {id: 'newDesign'} ,
         :WORD_STATUS_COLUMN =>  {id: 'statusBar'} ,
         :MEMO_CARD_LIST => {xpath:  '/html/body/table/tbody'} ,
-        #:MEMO_CARD_BY_INDEX=> {:xpath=> "id('newDesign')/x:tbody/x:tr/x:td[6]"}
     }
   end
 
-  def selector_builder(selector_string, param)
-     selector = "id('newDesign')/x:tbody/x:tr/x:td[6]"
-     selector_key = ':MEMO_CARD_BY_INDEX'
-     return {xpath: selector}
-  end
 
   def new_design_status
     text_of @selectors[:NEW_DESIGN_TEXT_2]
@@ -39,8 +33,12 @@ class MemoCardIndexPage < Base
   end
 
   def choose_memo_card_by_index(index) #TODO - maybe build an array table
-    binding.pry
-    puts selector_builder("cc", "1")
-    #puts 'value is: ' + value
+    return text_of(selector_builder_for_memo_card_table(index))
+  end
+
+  private
+
+  def selector_builder_for_memo_card_table(param)
+    return {xpath: '//*[@id="newDesign"]/tbody/tr/td['+param.to_s+']' }
   end
 end
