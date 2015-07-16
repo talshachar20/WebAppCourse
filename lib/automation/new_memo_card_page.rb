@@ -10,7 +10,7 @@ class NewMemoCardPage < Base
   end
 
   def enter_new_memo_word
-    
+    puts "dfdfd"
   end
 
 end
