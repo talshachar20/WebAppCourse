@@ -9,4 +9,8 @@ class NewMemoCardPage < Base
     super(driver)
   end
 
+  def enter_new_memo_word
+    
+  end
+
 end
