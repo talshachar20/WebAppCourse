@@ -18,12 +18,13 @@ class MemoCardIndexPage < Base
         :NEW_DESIGN_TEXT => {id: 'newDesign'} ,
         :WORD_STATUS_COLUMN =>  {id: 'statusBar'} ,
         :MEMO_CARD_LIST => {xpath:  '/html/body/table/tbody'} ,
+        :NEW_MEMO_CARD_BUTTON => {id: 'create_new_memo_card'}
     }
   end
 
 
   def new_design_status
-    text_of @selectors[:NEW_DESIGN_TEXT_2]
+    text_of @selectors[:NEW_DESIGN_TEXT]
   end
 
   #TODO - build function to count memo cards
@@ -36,9 +37,21 @@ class MemoCardIndexPage < Base
     return text_of(selector_builder_for_memo_card_table(index))
   end
 
+  def count_memo_cards
+    memo_cards_num = find_elements selectors[:MEMO_CARD_LIST]
+    return memo_cards_num.count
+  end
+
+  def click_on_new_memo_card
+    new_memo_card_page = find (selectors[:NEW_MEMO_CARD_BUTTON])
+    new_memo_card_page.click
+    return NewMemoCardPage.new(@@driver)
+  end
+
   private
 
   def selector_builder_for_memo_card_table(param)
-    return {xpath: '//*[@id="newDesign"]/tbody/tr/td['+param.to_s+']' }
+    return {xpath: '//*[@id="newDesign"]/tbody/tr['+param.to_s+']/td[1]' }
   end
+
 end
