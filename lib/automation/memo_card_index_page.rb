@@ -1,6 +1,7 @@
 require_relative 'base_page'
 require_relative 'login_page'
 require_relative 'memo_card_page'
+require_relative 'new_memo_card_page'
 require 'pry'
 require 'capybara/node/finders'
 
@@ -43,6 +44,7 @@ class MemoCardIndexPage < Base
   end
 
   def click_on_new_memo_card
+    puts "navigating to new memo card page"
     new_memo_card_page = find (selectors[:NEW_MEMO_CARD_BUTTON])
     new_memo_card_page.click
     return NewMemoCardPage.new(@@driver)

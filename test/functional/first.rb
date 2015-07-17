@@ -95,6 +95,9 @@ describe 'Testing login page' do
       result = result.submit_login
       result = result.click_on_new_memo_card
       sleep(2)
+      result.type_memo_card_word("tal")
+      result.type_memo_card_translation("test")
+      result.submit_memo_Card
     end
   end
 end
