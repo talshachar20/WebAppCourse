@@ -22,4 +22,8 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+    <div class="field">
+      <%= f.label :language %><br>
+      <%=f.hidden_field :lang_id, :value => @current_user.user_type  %>
+    </div>
 <% end %>
