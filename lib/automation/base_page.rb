@@ -77,6 +77,7 @@ class Base
     end
 
     def get_adress
+      sleep(1)
       @@driver.current_url
     end
 
