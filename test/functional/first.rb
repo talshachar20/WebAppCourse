@@ -16,6 +16,8 @@ describe 'Testing login page' do
   entry_data = {  #factory doesn't take from test db
       :user_email => "tal.shachar16@gmail.com",
       :user_password => "tazos128",
+      :memo_word => "tal",
+      :memo_translation => "test",
   }
 
   appTest = nil
@@ -37,17 +39,14 @@ describe 'Testing login page' do
   context 'go to the login page' do
     it 'should asset url of login page' do
       result = appTest.visit_page.click_on_my_status
-      sleep(1)
       result = result.navigate_to_login_page
-      sleep(2)
       result_title = result.get_adress
       expect(result_title).to be == 'http://0.0.0.0:3000/users/sign_in'
     end
 
     it 'should login with credentials' do
       result = appTest.visit_page.click_on_my_status
-      result  = result.navigate_to_login_page
-      sleep(2)
+      result = result.navigate_to_login_page
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
@@ -60,8 +59,7 @@ describe 'Testing login page' do
     it 'should include only memo card from the same lang_id' do
         FactoryGirl.create(:memo_card, :word=> 'tal' , :translation=> 'test', :lang_id=> 2 )
         result = appTest.visit_page.click_on_my_status
-        result  = result.navigate_to_login_page
-        sleep(2)
+        result = result.navigate_to_login_page
         result.type_user_mail(entry_data[:user_email])
         result.type_password(entry_data[:user_password])
         result = result.submit_login
@@ -70,14 +68,13 @@ describe 'Testing login page' do
     end
   end
 
-  context 'add memo card' do
+  context 'memo card index page' do
     before (:each) do  #TODO - instead of factory create page object for new memo card
       FactoryGirl.create(:memo_card, :word=> "dein" , :translation => "yours" , :lang_id=> 1)
     end
     it 'should include 2 memo cards from the same lang_id' do
       result = appTest.visit_page.click_on_my_status
       result  = result.navigate_to_login_page
-      sleep(2)
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
@@ -86,18 +83,18 @@ describe 'Testing login page' do
       expect(memo_card_array.second).to include("dein")
     end
 
-    it 'clicks on new memo card button' do
+    it 'add new memo card button' do
       result = appTest.visit_page.click_on_my_status
       result  = result.navigate_to_login_page
-      sleep(2)
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       result = result.click_on_new_memo_card
-      sleep(2)
-      result.type_memo_card_word("tal")
-      result.type_memo_card_translation("test")
-      result.submit_memo_Card
+      result.type_memo_card_word(entry_data[:memo_word])
+      result.type_memo_card_translation(entry_data[:memo_translation])
+      result = result.submit_memo_Card
+      question = result.get_question_text
+      expect(question).to include(entry_data[:memo_word])
     end
   end
 end

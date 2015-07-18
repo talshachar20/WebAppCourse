@@ -14,27 +14,16 @@ class MemoCardIndexPage < Base
     initialize_selectors
   end
 
-  def initialize_selectors
-    @selectors = {
-        :NEW_DESIGN_TEXT => {id: 'newDesign'} ,
-        :WORD_STATUS_COLUMN =>  {id: 'statusBar'} ,
-        :MEMO_CARD_LIST => {xpath:  '/html/body/table/tbody'} ,
-        :NEW_MEMO_CARD_BUTTON => {id: 'create_new_memo_card'}
-    }
-  end
-
-
   def new_design_status
     text_of @selectors[:NEW_DESIGN_TEXT]
   end
 
-  #TODO - build function to count memo cards
   def num_of_memo_cards
     word_status_array = find_elements @selectors[:WORD_STATUS_COLUMN]
     word_status_array.size
   end
 
-  def choose_memo_card_by_index(index) #TODO - maybe build an array table
+  def choose_memo_card_by_index(index)
     return text_of(selector_builder_for_memo_card_table(index))
   end
 
@@ -54,6 +43,16 @@ class MemoCardIndexPage < Base
 
   def selector_builder_for_memo_card_table(param)
     return {xpath: '//*[@id="newDesign"]/tbody/tr['+param.to_s+']/td[1]' }
+  end
+
+
+  def initialize_selectors
+    @selectors = {
+        :NEW_DESIGN_TEXT => {id: 'newDesign'} ,
+        :WORD_STATUS_COLUMN =>  {id: 'statusBar'} ,
+        :MEMO_CARD_LIST => {xpath:  '/html/body/table/tbody'} ,
+        :NEW_MEMO_CARD_BUTTON => {id: 'create_new_memo_card'}
+    }
   end
 
 end
