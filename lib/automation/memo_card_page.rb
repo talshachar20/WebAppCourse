@@ -5,20 +5,15 @@ require 'capybara/node/finders'
 
 class MemoCardPage < Base
 
-  MY_STATUS_BUTTON        = { xpath: '/html/body/div[1]/ul/li[2]'}
-  HOME_BUTTON = { xpath: '/html/body/div[1]/ul/li[1]/a'}
-  ABOUT_BUTTON =  {xpath: '/html/body/div[1]/ul/li[3]/a'}
-  UPPERPART = { id: 'messages'  }
-  ALL_PAGE_TEXT = {xpath: '//*'}
-  LOGIN_LINK = {id: 'login_link'}
 
-  attr_reader :driver
+  attr_reader :driver , :selectors
   def initialize(driver)
     super(driver)
+    initialize_selectors
   end
 
   def get_my_status_button
-    find MY_STATUS_BUTTON
+    find selectors[:MY_STATUS_BUTTON]
   end
 
   def click_on_my_status
@@ -28,7 +23,7 @@ class MemoCardPage < Base
   end
 
   def get_home_page_button
-    find HOME_BUTTON
+    find selectors[:HOME_BUTTON]
   end
 
   def click_on_my_homepage_button
@@ -37,7 +32,7 @@ class MemoCardPage < Base
   end
 
   def get_about_button
-    find ABOUT_BUTTON
+    find selectors[:ABOUT_BUTTON]
   end
 
   def click_on_about_button
@@ -46,8 +41,8 @@ class MemoCardPage < Base
   end
 
   def search_result_present?(search_result)
-    wait_for { displayed?(UPPERPART) }
-    if text_of(UPPERPART).include? search_result
+    wait_for { displayed?(selectors[:UPPERPART]) }
+    if text_of(selectors[:UPPERPART]).include? search_result
       puts "end !!"
     else
       puts "failed"
@@ -55,7 +50,7 @@ class MemoCardPage < Base
   end
 
   def get_upper_part
-    find ALL_PAGE_TEXT
+    find selectors[:ALL_PAGE_TEXT]
   end
 
   def get_login_link
@@ -64,9 +59,22 @@ class MemoCardPage < Base
 
   def navigate_to_login_page
     puts "Navigating to login page"
-    login =  find LOGIN_LINK
+    login =  find selectors[:LOGIN_LINK]
     login.click
     return LoginPage.new(@@driver)
+  end
+
+  private
+
+  def initialize_selectors
+    @selectors = {
+      :MY_STATUS_BUTTON => { xpath: '/html/body/div[1]/ul/li[2]'},
+      :HOME_BUTTON => { xpath: '/html/body/div[1]/ul/li[1]/a'},
+      :ABOUT_BUTTON =>  {xpath: '/html/body/div[1]/ul/li[3]/a'},
+      :UPPERPART => { id: 'messages'  },
+      :ALL_PAGE_TEXT => {xpath: '//*'},
+      :LOGIN_LINK => {id: 'login_link'}
+    }
   end
 
 end
