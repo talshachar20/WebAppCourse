@@ -69,7 +69,7 @@ describe 'Testing login page' do
   end
 
   context 'memo card index page' do
-    before (:each) do  #TODO - instead of factory create page object for new memo card
+    before (:each) do
       FactoryGirl.create(:memo_card, :word=> "dein" , :translation => "yours" , :lang_id=> 1)
     end
     it 'should include 2 memo cards from the same lang_id' do
@@ -78,7 +78,7 @@ describe 'Testing login page' do
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
-      memo_card_array = [result.choose_memo_card_by_index(1)  ,  result.choose_memo_card_by_index(2)]
+      memo_card_array = [result.choose_text_memo_card_by_index(1)  ,  result.choose_text_memo_card_by_index(2)]
       expect(memo_card_array.first).to include("mein")
       expect(memo_card_array.second).to include("dein")
     end
@@ -95,6 +95,17 @@ describe 'Testing login page' do
       result = result.submit_memo_Card
       question = result.get_question_text
       expect(question).to include(entry_data[:memo_word])
+    end
+  end
+
+  context 'question page' do
+    it 'should include the correct answer out of the 4' do
+      result = appTest.visit_page.click_on_my_status
+      result  = result.navigate_to_login_page
+      result.type_user_mail(entry_data[:user_email])
+      result.type_password(entry_data[:user_password])
+      result = result.submit_login
+      result.click_memo_card_by_index(1)
     end
   end
 end

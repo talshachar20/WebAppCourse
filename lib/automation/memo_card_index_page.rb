@@ -23,8 +23,13 @@ class MemoCardIndexPage < Base
     word_status_array.size
   end
 
-  def choose_memo_card_by_index(index)
+  def choose_text_memo_card_by_index(index)
     return text_of(selector_builder_for_memo_card_table(index))
+  end
+
+  def click_memo_card_by_index(index)
+    current_memo = selector_builder_for_test_yourself_memo_card_table(index)
+    click_on(current_memo)
   end
 
   def count_memo_cards
@@ -34,8 +39,8 @@ class MemoCardIndexPage < Base
 
   def click_on_new_memo_card
     puts "navigating to new memo card page"
-    new_memo_card_page = find (selectors[:NEW_MEMO_CARD_BUTTON])
-    new_memo_card_page.click
+    new_memo_card_page =  (selectors[:NEW_MEMO_CARD_BUTTON])
+    click_on new_memo_card_page
     return NewMemoCardPage.new(@@driver)
   end
 
@@ -43,6 +48,10 @@ class MemoCardIndexPage < Base
 
   def selector_builder_for_memo_card_table(param)
     return {xpath: '//*[@id="newDesign"]/tbody/tr['+param.to_s+']/td[1]' }
+  end
+
+  def selector_builder_for_test_yourself_memo_card_table(param)
+    return {xpath: '//*[@id="newDesign"]/tbody/tr['+param.to_s+']/td[5]' }
   end
 
 

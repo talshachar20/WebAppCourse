@@ -15,10 +15,9 @@ class QuestionPage < Base
   end
 
   def get_all_answers
-    answers_array = [selectors[:ANSWER1], selectors[:ANSWER2], selectors[:ANSWER3], selectors[:ANSWER4]]
+    answers_array = [selectors[:ANSWER4], selectors[:ANSWER2], selectors[:ANSWER3], selectors[:ANSWER4]]
     answers_array.each do |answer|
-      answer.to_s
-      text_of answer
+     puts (text_of answer)
     end
   end
 

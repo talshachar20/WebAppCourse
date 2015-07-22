@@ -20,13 +20,19 @@ class MemoCardsController < ApplicationController
   def get_four_random_words #TODO : pull words by type
     #false_words = FalseWord.all
     false_words = MemoCard.where.not(id: @memo_card.id ).where(lang_id: current_user.user_type)
-    #false_words = MemoCard.where("id = " , [@memo_card.id]  )
-    random_word = false_words.sample.translation  #random false word
-    random_word_second = false_words.sample.translation
-    random_word_third = false_words.sample.translation
+    if false_words.empty?
+       random_word = 'default'
+       random_word_second = 'default'
+       random_word_third = 'default'
+    else
+      random_word = false_words.sample.translation  #random false word
+      random_word_second = false_words.sample.translation
+      random_word_third = false_words.sample.translation
+    end
     true_word = @memo_card.translation  #the correct answer
     return answers = [random_word , random_word_second, random_word_third , true_word].shuffle
   end
+
   # TODO: get definition between words and phrases - add type of memo_card
   # GET /memo_cards/1
   # GET /memo_cards/1.json
