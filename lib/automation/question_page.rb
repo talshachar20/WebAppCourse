@@ -15,9 +15,19 @@ class QuestionPage < Base
   end
 
   def get_all_answers
-    answers_array = [selectors[:ANSWER4], selectors[:ANSWER2], selectors[:ANSWER3], selectors[:ANSWER4]]
+    all_answers = Array[]
+    answers_array = [selectors[:ANSWER1], selectors[:ANSWER2], selectors[:ANSWER3], selectors[:ANSWER4]]
     answers_array.each do |answer|
-     puts (text_of answer)
+     all_answers << (text_of(answer))
+    end
+    return all_answers
+  end
+
+  def find_answer_by_word(word)
+    get_all_answers.each do |answer|
+      if answer == word
+        return word
+      end
     end
   end
 

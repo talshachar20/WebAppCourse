@@ -30,6 +30,7 @@ class MemoCardIndexPage < Base
   def click_memo_card_by_index(index)
     current_memo = selector_builder_for_test_yourself_memo_card_table(index)
     click_on(current_memo)
+    return QuestionPage.new(@@driver)
   end
 
   def count_memo_cards

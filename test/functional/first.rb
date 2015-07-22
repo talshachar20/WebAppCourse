@@ -105,7 +105,8 @@ describe 'Testing login page' do
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
-      result.click_memo_card_by_index(1)
+      result = result.click_memo_card_by_index(1)
+      expects(result.find_answer_by_word("my"))
     end
   end
 end
