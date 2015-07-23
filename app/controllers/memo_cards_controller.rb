@@ -7,20 +7,14 @@ class MemoCardsController < ApplicationController
   #caches_page :index #cashes word index
   before_filter :authenticate_user!
 
-
-
   def index
     logger.debug "Memo cards page"
     @memo_cards = MemoCard.all
   end
 
-
-
-
-  def get_four_random_words #TODO : pull words by type
-    #false_words = FalseWord.all
+  def get_four_random_words
     false_words = MemoCard.where.not(id: @memo_card.id ).where(lang_id: current_user.user_type)
-    if false_words.empty?
+    if false_words.empty?    #when there are no any other answers
        random_word = 'default'
        random_word_second = 'default'
        random_word_third = 'default'
@@ -142,7 +136,8 @@ class MemoCardsController < ApplicationController
     def get_next_word_id(answer_id)
       next_word_id = MemoCard.select("id").where("id >" + answer_id).where(lang_id: current_user.user_type).first.to_param
       if next_word_id == nil
-        return next_word_id = MemoCard.select("id").where("id <" + answer_id).where(lang_id: current_user.user_type).first.to_param
+         next_word_id = MemoCard.select("id").where("id <=" + answer_id).where(lang_id: current_user.user_type).first.to_param
+         return next_word_id
       else
         return next_word_id
       end

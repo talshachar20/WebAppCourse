@@ -18,6 +18,7 @@ describe 'Testing login page' do
       :user_password => "tazos128",
       :memo_word => "tal",
       :memo_translation => "test",
+      :answer => "my",
   }
 
   appTest = nil
@@ -106,7 +107,7 @@ describe 'Testing login page' do
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       result = result.click_memo_card_by_index(1)
-      expects(result.find_answer_by_word("my"))
+      expects(result.find_answer_by_word(entry_data[:answer]))
     end
   end
 end
