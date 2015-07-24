@@ -156,5 +156,4 @@ class MemoCardsController < ApplicationController
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
     end
-#     TODO: unite answer to result to one method
 end
