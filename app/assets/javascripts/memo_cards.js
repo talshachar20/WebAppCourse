@@ -16,8 +16,9 @@ $(document).on("click" ,".answer",function(){
             $("#theAnswerIs").html(clicked_answer + " is: " + json.answer)
             var nextid =json.nextid
             httpUrl = '/memo_cards/' + nextid
-            if (json.answer == "true")
-             self.location=httpUrl
+            if (json.answer == "true") {
+                setTimeout(next_one, 2000 )
+            }
         }
      });
 });
@@ -42,6 +43,18 @@ $(document).on("click" ,"#calculate",function(){
     });
 });
 
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
+}
+
+function next_one(){
+    self.location = httpUrl
+}
 
 
 

@@ -18,14 +18,14 @@ class QuestionPage < Base
     all_answers = Array[]
     answers_array = [selectors[:ANSWER1], selectors[:ANSWER2], selectors[:ANSWER3], selectors[:ANSWER4]]
     answers_array.each do |answer|
-     all_answers << (text_of(answer))
+    all_answers << (answer)
     end
     return all_answers
   end
 
   def find_answer_by_word(word)
     get_all_answers.each do |answer|
-      if answer == word
+      if text_of(answer) == word
         return word
       end
     end
@@ -44,6 +44,19 @@ class QuestionPage < Base
     end
   end
 
+  def click_on_answer_by_word(given_answer)
+    get_all_answers.each do |answer|
+      if text_of(answer) == given_answer
+        binding.pry
+        click_on(answer)
+      end
+    end
+  end
+
+  def get_answer_status
+    text_of selectors[:ANSWER_STATUS]
+  end
+
   private
   def initialize_selectors
     @selectors = {
@@ -52,6 +65,7 @@ class QuestionPage < Base
         :ANSWER2 => {id: 'answer2'},
         :ANSWER3 => {id: 'answer3'},
         :ANSWER4 => {id: 'answer4'},
+        :ANSWER_STATUS => {id: 'theAnswerIs'},
     }
   end
 end

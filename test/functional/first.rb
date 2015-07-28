@@ -107,7 +107,18 @@ describe 'Testing login page' do
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       result = result.click_memo_card_by_index(1)
-      expects(result.find_answer_by_word(entry_data[:answer]))
+      expects(result.find_answer_by_word("my"))
+    end
+
+    it 'should return true when clicking on the correct answer' do
+      result = appTest.visit_page.click_on_my_status
+      result  = result.navigate_to_login_page
+      result.type_user_mail(entry_data[:user_email])
+      result.type_password(entry_data[:user_password])
+      result = result.submit_login
+      result = result.click_memo_card_by_index(1)
+      result.click_on_answer_by_word("my")
+      puts result.get_answer_status
     end
   end
 end
