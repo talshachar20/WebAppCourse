@@ -6,6 +6,7 @@ class MemoCardsController < ApplicationController
   #layout "random_card"
   #caches_page :index #cashes word index
   before_filter :authenticate_user!
+  @@value = 2
 
   def index
     logger.debug "Memo cards page"
@@ -97,6 +98,7 @@ class MemoCardsController < ApplicationController
       end
     else
       correct_answer_to_result(answer_id)
+      cookies[:correct_answer] = { value: @@value+=1, expires: 2.hour.from_now }
       respond_to do |format|
         format.json { render json: {answer:"true" , nextid:next_answer} }
       end
