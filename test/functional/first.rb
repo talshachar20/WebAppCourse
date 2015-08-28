@@ -119,8 +119,7 @@ describe 'Testing login page' do
       result = result.submit_login
       result = result.click_memo_card_by_index(1)
       result.click_on_answer_by_word("my")
-      expect (result.get_answer_status).should include("true")
+      expect(result.get_answer_status).should include("true")
     end
   end
 end
-

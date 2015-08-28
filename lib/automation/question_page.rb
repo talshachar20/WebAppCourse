@@ -65,7 +65,7 @@ class QuestionPage < Base
 
   def get_answer_status
     #TODO - fix  , returns x
-    text_of selectors[:ANSWER_STATUS]
+    text_of(selectors[:ANSWER_STATUS])
   end
 
   private
