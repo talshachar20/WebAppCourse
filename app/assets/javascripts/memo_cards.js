@@ -17,7 +17,7 @@ $(document).on("click" ,".answer",function(){
             var nextid =json.nextid
             httpUrl = '/memo_cards/' + nextid
             if (json.answer == "true") {
-                setTimeout(next_one, 2000 )
+                setTimeout(next_one, 3000 )
             }
         }
      });
