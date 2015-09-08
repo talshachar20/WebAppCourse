@@ -15,10 +15,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def profile
-    puts "sddsdssd"
-  end
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password , :user_type) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_female, :date_of_birth , :user_type) }

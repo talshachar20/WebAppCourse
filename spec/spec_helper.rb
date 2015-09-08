@@ -19,6 +19,7 @@ require 'factory_girl_rails'
 #require_relative '../spec/factories/users'
 
 RSpec.configure do |config|
+  #config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
   config.include FactoryGirl::Syntax::Methods
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

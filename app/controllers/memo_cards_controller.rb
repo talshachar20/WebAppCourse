@@ -98,9 +98,9 @@ class MemoCardsController < ApplicationController
       end
     else
       correct_answer_to_result(answer_id)
-      cookies[:correct_answer] = { value: @@value+=1, expires: 2.hour.from_now }
+      cookies[:correct_answer] = { value: @@value+=1, expires: 5.hour.from_now }
       respond_to do |format|
-        format.json { render json: {answer:"true" , nextid:next_answer} }
+        format.json { render json: {answer:"true" , nextid:next_answer } }
       end
     end
   end
@@ -110,7 +110,7 @@ class MemoCardsController < ApplicationController
     result_correct = Results.select(:id).where(is_correct: 1 , user_id: current_user , session_id: session_id ).length.to_s
     result_wrong = Results.select(:id).where(is_correct: 0 , user_id: current_user , session_id: session_id).length.to_s
     respond_to do |format|
-      format.json { render json: {right_answers: result_correct, wrong_answers: result_wrong} }
+      format.json { render json: {right_answers: result_correct, wrong_answers: result_wrong, correct_answer_cookie: cookies[:correct_answer]} }
     end
   end
 

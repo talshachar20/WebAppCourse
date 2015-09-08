@@ -1,7 +1,8 @@
 require 'rails_helper'
-require 'spec_helper'
+require_relative '../spec_helper'
 require 'pry'
-require 'answer_selector'
+include Devise::TestHelpers
+
 
 RSpec.describe MemoCardsController, :type => :controller do
     before do
@@ -28,22 +29,20 @@ RSpec.describe MemoCardsController, :type => :controller do
       end
 
       context "new one"  do
-        let(:oneMemo) {MemoCardsController.new}
-
-        before do
-          @memo_card.update_attributes(:id => 78)
-          @memo_card2.update_attributes(:id =>2 )
-          @memo_card3 = MemoCard.create(:id => 3,:word => 'test3' , :word_id => 3 , :translation => "blabla23")
-          @daaay = oneMemo.stub(:get_four_random_words).and_return (@memo_card)
+        before (:each) do
+          @user = create(:user)
+          sign_in @user
         end
 
+        let(:oneMemo) {MemoCardsController.new}
         it "should add new memo card" do
           @second_memo = MemoCard.new(:word => 'test2' , :word_id => 2)
           @memo_cards_library = [@memo_card , @second_memo]
           expect(@second_memo.word).to eq("test2")
           expect(@memo_cards_library.length).to eq(2)
+          get :get_four_random_words
+          response.code.should eq("200")
         end
-
       end
     end
  end
