@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :current_password, :is_female, :date_of_birth , :user_type) }
   end
 
+  def my_logger
+    @@my_logger = Logger.new("#{Rails.root}/log/my.log")
+  end
+
 end

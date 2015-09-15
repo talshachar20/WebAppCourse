@@ -1,3 +1,5 @@
+require 'pstore'
+
 class MemoCardsController < ApplicationController
   before_action :set_memo_card, only: [:show, :edit, :update, :destroy]
 
@@ -6,7 +8,7 @@ class MemoCardsController < ApplicationController
   #layout "random_card"
   #caches_page :index #cashes word index
   before_filter :authenticate_user!
-  @@value = 2
+  @@store = PStore.new("data.pstore")
 
   def index
     logger.debug "Memo cards page"
@@ -47,6 +49,8 @@ class MemoCardsController < ApplicationController
   # POST /memo_cards
   # POST /memo_cards.json
   def create
+    storing_user_data("new_memo_card") #TODO - think about a way to store with timing
+    my_logger.debug return_user_data_from_pstore
     @memo_card = MemoCard.new(memo_card_params)
     expire_page :action => :index
     respond_to do |format|
@@ -98,7 +102,6 @@ class MemoCardsController < ApplicationController
       end
     else
       correct_answer_to_result(answer_id)
-      cookies[:correct_answer] = { value: @@value+=1, expires: 5.hour.from_now }
       respond_to do |format|
         format.json { render json: {answer:"true" , nextid:next_answer } }
       end
@@ -106,11 +109,12 @@ class MemoCardsController < ApplicationController
   end
 
   def count_for_result()
+    #TODO -move counts to cookie instead of query
     session_id = session[:session_id]
     result_correct = Results.select(:id).where(is_correct: 1 , user_id: current_user , session_id: session_id ).length.to_s
     result_wrong = Results.select(:id).where(is_correct: 0 , user_id: current_user , session_id: session_id).length.to_s
     respond_to do |format|
-      format.json { render json: {right_answers: result_correct, wrong_answers: result_wrong, correct_answer_cookie: cookies[:correct_answer]} }
+      format.json { render json: {right_answers: result_correct, wrong_answers: result_wrong}}
     end
   end
 
@@ -157,5 +161,20 @@ class MemoCardsController < ApplicationController
       session_id = session[:session_id]
       Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
       logger.debug "Wrong result entered to user id:  #{the_current_user}"
+    end
+
+    def storing_user_data(action)
+      @@store.transaction do
+        @@store[:userid_store] = current_user.id
+        @@store[:time_last_updated_store] = Time.now
+        @@store[:action_made_by_user] = action
+      end
+    end
+
+    def return_user_data_from_pstore
+      current_user_id =  @@store.transaction { @@store[:userid_store] }
+      current_time =  @@store.transaction { @@store[:time_last_updated_store] }
+      action_by_user =  @@store.transaction { @@store[:action_made_by_user] }
+      return "action: " + action_by_user.to_s + " userid: " + current_user_id.to_s + " time: " +  current_time.to_s
     end
 end
