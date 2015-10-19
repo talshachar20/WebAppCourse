@@ -1,9 +1,10 @@
 require_relative '../../test/test_helper'
 require_relative '../../spec/spec_helper'
 require_relative '../../app/controllers/memo_cards_controller'
-
-
-
+require_relative '../../app/models/user'
+#require_relative '../../spec/factories/users'
+require_relative '../../test/support/sign_in_support'
+require_relative '../../spec/rails_helper'
 
 describe User  do
   before(:each) do
@@ -32,12 +33,4 @@ describe MemoCard do
     expect(memo_card.word).to eq('dein')
   end
 
-
-end
-
-RSpec.feature "Memo Card", :type => :feature do
-  it "should add new memo card" do
-    visit "http://0.0.0.0:3000/memo_cards"
-    response.code.should eq("200")
-  end
 end

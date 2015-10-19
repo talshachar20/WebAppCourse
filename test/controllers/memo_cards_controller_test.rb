@@ -1,4 +1,6 @@
-require 'test_helper'
+require_relative '../../test/test_helper'
+require_relative '../../spec/spec_helper'
+require_relative 'memo_cards'
 
 class MemoCardsControllerTest < ActionController::TestCase
   include Devise::TestHelpers

@@ -60,3 +60,4 @@ gem 'test-unit'
 group :test do
   gem 'factory_girl_rails', :require => false
 end
+gem 'warden'

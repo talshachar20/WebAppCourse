@@ -27,11 +27,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :memo_cards do
+    collection do
+      get :get_four_random_words
+    end
+  end
+
   devise_scope :user do
     get '/sign-in' => "devise/sessions#new", :as => :login
   end
-
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

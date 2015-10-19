@@ -1,4 +1,6 @@
 require 'pstore'
+require_relative '../../lib/answer_selector'
+include AnswerSelector
 
 class MemoCardsController < ApplicationController
   before_action :set_memo_card, only: [:show, :edit, :update, :destroy]
@@ -7,6 +9,7 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards.json
   #layout "random_card"
   #caches_page :index #cashes word index
+  attr_accessor :memo_card
   before_filter :authenticate_user!
 
   def index
@@ -15,18 +18,7 @@ class MemoCardsController < ApplicationController
   end
 
   def get_four_random_words
-    false_words = MemoCard.where.not(id: @memo_card.id ).where(lang_id: current_user.user_type)
-    if false_words.empty?    #when there are no any other answers
-       random_word = 'default'
-       random_word_second = 'default'
-       random_word_third = 'default'
-    else
-      random_word = false_words.sample.translation  #random false word
-      random_word_second = false_words.sample.translation
-      random_word_third = false_words.sample.translation
-    end
-    true_word = @memo_card.translation  #the correct answer
-    return answers = [random_word , random_word_second, random_word_third , true_word].shuffle
+     get_four_random_words_from_module
   end
 
   # TODO: get definition between words and phrases - add type of memo_card
@@ -48,8 +40,8 @@ class MemoCardsController < ApplicationController
   # POST /memo_cards
   # POST /memo_cards.json
   def create
-    storing_user_data("new_memo_card") #TODO - think about a way to store with timing
-    my_logger.debug return_user_data_from_pstore
+    #storing_user_data("new_memo_card") #TODO - think about a way to store with timing
+    #my_logger.debug return_user_data_from_pstore
     @memo_card = MemoCard.new(memo_card_params)
     expire_page :action => :index
     respond_to do |format|
@@ -87,6 +79,7 @@ class MemoCardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   def check_answer()
     word_in_page = params[:word_temp]

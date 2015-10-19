@@ -122,4 +122,5 @@ describe 'Testing login page' do
       expect(result.get_answer_status).should include("true")
     end
   end
+
 end
