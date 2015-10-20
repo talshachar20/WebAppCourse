@@ -18,6 +18,8 @@ module CheckAnswers
     end
   end
 
+  private
+
   def get_next_word_id(answer_id)
     next_word_id = MemoCard.select("id").where("id >" + answer_id).where(lang_id: current_user.user_type).first.to_param
     if next_word_id == nil

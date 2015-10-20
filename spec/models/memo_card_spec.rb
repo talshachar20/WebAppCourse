@@ -1,6 +1,9 @@
 require 'rails_helper'
+require_relative '../../spec/spec_helper'
 require_relative '../../lib/answer_selector'
 require_relative '../../app/controllers/memo_cards_controller'
+require_relative '../../config/initializers/devise'
+
 
 RSpec.describe MemoCard do
   describe 'First memocard'do
@@ -35,4 +38,17 @@ RSpec.describe MemoCard do
         end
     end
    end
+end
+
+describe AnswerSelector do
+  include AnswerSelector
+  subject {get_four_random_words_from_module(@user)}
+  before (:example) do
+    @memo_card = MemoCard.new(:word => 'talTest' , :translation => 'test')
+    @user = User.create(email: "example@test.com", password: "test" , user_type: 1)
   end
+  it "bla k" do
+    expect(subject).to include('my' , 'my', 'my' , 'test')
+  end
+
+end
