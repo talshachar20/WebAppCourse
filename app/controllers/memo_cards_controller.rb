@@ -1,6 +1,7 @@
 require 'pstore'
 require_relative '../../lib/answer_selector'
 require_relative '../../lib/check_answers'
+require_relative '../../lib/count_for_result'
 include AnswerSelector
 include CheckAnswers
 
@@ -82,19 +83,14 @@ class MemoCardsController < ApplicationController
     end
   end
 
-
   def check_answer
-    check_answer_from_module
+    session_id = session[:session_id]
+    check_answer_from_module(params[:word_temp], params[:word_in_german], current_user, session_id)
   end
 
-  def count_for_result()
-    #TODO -move counts to cookie instead of query
+  def count_for_result
     session_id = session[:session_id]
-    result_correct = Results.select(:id).where(is_correct: 1 , user_id: current_user , session_id: session_id ).length.to_s
-    result_wrong = Results.select(:id).where(is_correct: 0 , user_id: current_user , session_id: session_id).length.to_s
-    respond_to do |format|
-      format.json { render json: {right_answers: result_correct, wrong_answers: result_wrong}}
-    end
+    count_for_result_from_module(current_user , session_id)
   end
 
   def get_new_status_for_user
