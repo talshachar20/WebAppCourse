@@ -61,3 +61,4 @@ group :test do
   gem 'factory_girl_rails', :require => false
 end
 gem 'warden'
+#gem 'rspec-json_expectations'
