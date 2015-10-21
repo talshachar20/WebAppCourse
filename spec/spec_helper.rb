@@ -21,6 +21,7 @@ require 'devise'
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers #, :type => :controller
+  config.include FactoryGirl::Syntax::Methods
   #config.include Devise::TestHelpers, type: :helper
   #config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
   config.include FactoryGirl::Syntax::Methods
