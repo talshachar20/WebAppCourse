@@ -7,7 +7,6 @@ require_relative '../../config/initializers/devise'
 
 describe AnswerSelector do
   include AnswerSelector
-  subject {get_four_random_words_from_module(@user)}
 
   context 'when calling 4 answers method' do
     before (:example) do
@@ -21,6 +20,7 @@ describe AnswerSelector do
     end
 
     context 'with the same lang_id' do
+      subject {get_four_random_words_from_module(@user)}
       it "includes the correct answer" do
         expect(subject).to include('test')
       end
@@ -47,10 +47,40 @@ end
 
 describe CountForResult do
   include CountForResult
-  @user = User.create(email: "example@test.com", password: "test" , user_type: 1)
-  subject {count_for_result_from_module(@user , '3')}
-  it '..' do
-    expect(subject).to include_json(right_answers: true)
+  before (:example) do
+    Results.destroy_all
+    @user = User.create(id: 1, email: "example@test.com", password: "test" , user_type: 1)
+    @result = Results.create(user_id: @user.id , is_correct: 1 , session_id: '3')
+    @result2 = Results.create(user_id: @user.id , is_correct: 1 , session_id: '3')
   end
+
+  context 'when we have correct results for user' do
+    subject {count_for_correct_result(@user , '3')}
+    it 'counts them' do
+      expect(subject).to eq('2')
+    end
+
+    it 'counts only for this specific user' do
+      @user2 = User.create(id: 2 , email: "example2@test.com", password: "test" , user_type: 1)
+      @result3 = Results.create(user_id: @user2.id , is_correct: 1 , session_id: '3')
+      expect(subject).to eq('2')
+    end
+
+    it 'has the same user with different session' do
+      @result2.update(:session_id => '2')
+      expect(subject).to eq('1')
+    end
+  end
+
+  context 'when we dont have any correct results per user' do
+    subject {count_for_correct_result(@user , '3')}
+    it 'returns zero' do
+      @result.update(:user_id => '30')
+      @result2.update(:user_id =>'30')
+      expect(subject).to eq('0')
+    end
+  end
+
+
 end
 

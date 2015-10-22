@@ -4,6 +4,7 @@ require_relative '../../lib/check_answers'
 require_relative '../../lib/count_for_result'
 include AnswerSelector
 include CheckAnswers
+include CountForResult
 
 class MemoCardsController < ApplicationController
   before_action :set_memo_card, only: [:show, :edit, :update, :destroy]
