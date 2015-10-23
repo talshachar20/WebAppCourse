@@ -8,6 +8,10 @@ require_relative '../../config/initializers/devise'
 describe AnswerSelector do
   include AnswerSelector
 
+  entry_data = {
+                  :default_wrong_answer => "default",
+  }
+
   context 'when calling 4 answers method' do
     before (:example) do
       MemoCard.destroy_all
@@ -31,15 +35,13 @@ describe AnswerSelector do
 
       it "includes wrong answers if its from correct lang_id" do
         @memo_card_first.update(:lang_id => 1)
-        @memo_card_second.update(:lang_id => 1)
-        @memo_card_third.update(:lang_id => 1)
         expect(subject).to include('my').or include('yours').or include('his')
-        expect(subject).not_to include('default')
+        expect(subject).not_to include(entry_data[:default_wrong_answer])
       end
 
       it "return defaults answers when there are no other matches" do
         @user.update(:user_type => 2)
-        expect(subject).to include('default')
+        expect(subject).to include(entry_data[:default_wrong_answer])
       end
      end
   end
@@ -81,6 +83,36 @@ describe CountForResult do
     end
   end
 
+  context 'when we have wrong results for user' do
+    before {
+      @result.update(:is_correct => 0)
+      @result2.update(:is_correct => 0)
+    }
+    subject {count_for_wrong_result(@user , '3')}
+    it 'counts them' do
+      expect(subject).to eq('2')
+    end
+
+    it 'counts only for this specific user' do
+      @user2 = User.create(id: 2 , email: "example2@test.com", password: "test" , user_type: 1)
+      @result3 = Results.create(user_id: @user2.id , is_correct: 0 , session_id: '3')
+      expect(subject).to eq('2')
+    end
+
+    it 'has the same user with different session' do
+      @result2.update(:session_id => '2')
+      expect(subject).to eq('1')
+    end
+  end
+
+  context 'when we dont have any wrong results per user' do
+    subject {count_for_wrong_result(@user , '3')}
+    it 'returns zero' do
+      @result.update(:user_id => '30')
+      @result2.update(:user_id =>'30')
+      expect(subject).to eq('0')
+    end
+  end
 
 end
 
