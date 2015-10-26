@@ -54,5 +54,8 @@ module CheckAnswers
     output = File.new('results.yaml' , 'a+')
     output.puts YAML.dump(@answers)
     output.close
+    got_data = YAML.load(File.open('results.yaml'))
+    first_user = got_data[:id]
+    puts first_user
   end
 end
