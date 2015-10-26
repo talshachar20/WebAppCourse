@@ -1,7 +1,7 @@
-require 'pstore'
 require_relative '../../lib/answer_selector'
 require_relative '../../lib/check_answers'
 require_relative '../../lib/count_for_result'
+require 'yaml'
 include AnswerSelector
 include CheckAnswers
 include CountForResult
@@ -39,7 +39,6 @@ class MemoCardsController < ApplicationController
   # POST /memo_cards.json
   def create
     #storing_user_data("new_memo_card") #TODO - think about a way to store with timing
-    #my_logger.debug return_user_data_from_pstore
     @memo_card = MemoCard.new(memo_card_params)
     expire_page :action => :index
     respond_to do |format|
@@ -80,6 +79,7 @@ class MemoCardsController < ApplicationController
     session_id = session[:session_id]
     check_answer_from_module(params[:word_temp], params[:word_in_german], current_user, session_id)
   end
+
 
   def count_for_result
     session_id = session[:session_id]

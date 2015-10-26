@@ -17,3 +17,6 @@
 
 #idea files
 .idea/
+
+#results file
+results.yaml

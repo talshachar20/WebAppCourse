@@ -1,3 +1,5 @@
+require 'yaml'
+
 module CheckAnswers
   def check_answer_from_module(word_temp , word_german , user , user_session)
     user_session_from_controller = user_session
@@ -8,11 +10,13 @@ module CheckAnswers
     next_answer = get_next_word_id(answer_id , user)
     if right_answer.empty?
       wrong_answer_to_result(answer_id , user , user_session_from_controller)
+      result_into_yaml(answer_id , user , user_session_from_controller , 0)
       respond_to do |format|
         format.json { render json: {answer:"false" , nextid:next_answer} }
       end
     else
       correct_answer_to_result(answer_id , user , user_session_from_controller)
+      result_into_yaml(answer_id , user , user_session_from_controller , 1)
       respond_to do |format|
         format.json { render json: {answer:"true" , nextid:next_answer } }
       end
@@ -43,5 +47,12 @@ module CheckAnswers
     session_id = session_id_from_controller
     Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
     logger.debug "Wrong result entered to user id:  #{the_current_user}"
+  end
+
+  def result_into_yaml(answer_id , user , user_session_from_controller , is_correct)
+    @answers = {"user_id:" => user.id , "word id" => answer_id ,  "is correct" => is_correct , "time created"=> Time.now , "session_id" => user_session_from_controller}
+    output = File.new('results.yaml' , 'a+')
+    output.puts YAML.dump(@answers)
+    output.close
   end
 end
