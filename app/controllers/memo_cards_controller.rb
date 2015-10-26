@@ -9,10 +9,6 @@ include CountForResult
 class MemoCardsController < ApplicationController
   before_action :set_memo_card, only: [:show, :edit, :update, :destroy]
 
-  # GET /memo_cards
-  # GET /memo_cards.json
-  #layout "random_card"
-  #caches_page :index #cashes word index
   attr_accessor :memo_card
   before_filter :authenticate_user!
 
@@ -26,8 +22,6 @@ class MemoCardsController < ApplicationController
   end
 
   # TODO: get definition between words and phrases - add type of memo_card
-  # GET /memo_cards/1
-  # GET /memo_cards/1.json
   def show
     @random_array = get_four_random_words
     @word_id_array = MemoCard.select("id")
@@ -59,8 +53,6 @@ class MemoCardsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /memo_cards/1
-  # PATCH/PUT /memo_cards/1.json
   def update
     expire_page :action => :index
     respond_to do |format|
@@ -114,5 +106,4 @@ class MemoCardsController < ApplicationController
     def memo_card_params
       params.require(:memo_card).permit(:word , :translation, :word_id , :lang_id)
     end
-
 end

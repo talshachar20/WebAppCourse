@@ -4,7 +4,6 @@ require_relative '../../lib/answer_selector'
 require_relative '../../app/controllers/memo_cards_controller'
 require_relative '../../config/initializers/devise'
 
-
 describe AnswerSelector do
   include AnswerSelector
 
@@ -113,6 +112,5 @@ describe CountForResult do
       expect(subject).to eq('0')
     end
   end
-
 end
 
