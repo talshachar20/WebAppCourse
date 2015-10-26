@@ -50,12 +50,11 @@ module CheckAnswers
   end
 
   def result_into_yaml(answer_id , user , user_session_from_controller , is_correct)
-    @answers = {"user_id:" => user.id , "word id" => answer_id ,  "is correct" => is_correct , "time created"=> Time.now , "session_id" => user_session_from_controller}
+    @answers = {"user id" => user.id , "word id" => answer_id ,  "is correct" => is_correct , "time created"=> Time.now , "session id" => user_session_from_controller}
     output = File.new('results.yaml' , 'a+')
     output.puts YAML.dump(@answers)
     output.close
-    got_data = YAML.load(File.open('results.yaml'))
-    first_user = got_data[:id]
-    puts first_user
+    got_data = YAML.load_file('results.yaml')
+    puts "!!!*******!!!!" + got_data["word id"].to_yaml
   end
 end
