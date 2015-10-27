@@ -38,7 +38,6 @@ class MemoCardsController < ApplicationController
   # POST /memo_cards
   # POST /memo_cards.json
   def create
-    #storing_user_data("new_memo_card") #TODO - think about a way to store with timing
     @memo_card = MemoCard.new(memo_card_params)
     expire_page :action => :index
     respond_to do |format|

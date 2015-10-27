@@ -32,7 +32,7 @@ $(document).on("click" ,"#calculate",function(){
             alert("oops!");
         },
         success: function(json) {
-            $("#results").html("Right answers: " + json.right_answers + " Wrong answers: " + json.wrong_answers)
+            $("#results").html("Today you have: Right answers: " + json.right_answers + " Wrong answers: " + json.wrong_answers)
             if (json.right_answers > json.wrong_answers) {
                 $("#calculate").html("Good KooshKoosh      " + "<img src='/assets/s3.png' />")
             }

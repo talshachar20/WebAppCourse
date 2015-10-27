@@ -9,10 +9,10 @@ module CountForResult
   end
 
   def count_for_correct_result(user , session_id)
-    Results.select(:id).where(is_correct: 1 , user_id: user.id , session_id: session_id ).length.to_s
+    Results.select(:id).where(is_correct: 1 , user_id: user.id, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).length.to_s
   end
 
   def count_for_wrong_result(user , session_id)
-    Results.select(:id).where(is_correct: 0 , user_id: user.id , session_id: session_id).length.to_s
+    Results.select(:id).where(is_correct: 0 , user_id: user.id,  created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).length.to_s
   end
 end
