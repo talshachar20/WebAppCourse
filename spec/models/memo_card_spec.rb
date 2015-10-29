@@ -51,8 +51,8 @@ describe CountForResult do
   before (:example) do
     Results.destroy_all
     @user = User.create(id: 1, email: "example@test.com", password: "test" , user_type: 1)
-    @result = Results.create(user_id: @user.id , is_correct: 1 , session_id: '3')
-    @result2 = Results.create(user_id: @user.id , is_correct: 1 , session_id: '3')
+    @result = Results.create(user_id: @user.id , is_correct: 1 , created_at:  Time.zone.now.beginning_of_day+1)
+    @result2 = Results.create(user_id: @user.id , is_correct: 1 , created_at:  Time.zone.now.beginning_of_day+1)
   end
 
   context 'when we have correct results for user' do
@@ -67,8 +67,8 @@ describe CountForResult do
       expect(subject).to eq('2')
     end
 
-    it 'has the same user with different session' do
-      @result2.update(:session_id => '2')
+    it 'has the same user but wrong results before the specific day' do
+      @result2.update(:created_at => Time.zone.now.beginning_of_day-1)
       expect(subject).to eq('1')
     end
   end
@@ -98,8 +98,8 @@ describe CountForResult do
       expect(subject).to eq('2')
     end
 
-    it 'has the same user with different session' do
-      @result2.update(:session_id => '2')
+    it 'has the same user but results are not from this specific day' do
+      @result2.update(:created_at => Time.zone.now.beginning_of_day-1)
       expect(subject).to eq('1')
     end
   end

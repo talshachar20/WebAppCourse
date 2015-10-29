@@ -10,14 +10,17 @@ $(document).on("click" ,".answer",function(){
         dataType: "json",
         data: {"word_temp": clicked_answer , "word_in_german": $("#question").text().trim()},
         error: function(){
-           alert("oops!");
+           alert("something went wrong :/");
         },
         success: function(json) {
             $("#theAnswerIs").html(clicked_answer + " is: " + json.answer )
             var nextid =json.nextid
             httpUrl = '/memo_cards/' + nextid
             if (json.answer == "true") {
-                setTimeout(next_one, 3000 )
+                setTimeout(next_one, 2000 )
+            }
+            else {
+                setTimeout(self.refresh, 2000 ) //TODO - REFRESH THE PAGE WITH THE SAME URL
             }
         }
      });
