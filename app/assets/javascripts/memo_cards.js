@@ -20,7 +20,7 @@ $(document).on("click" ,".answer",function(){
                 setTimeout(next_one, 2000 )
             }
             else {
-                setTimeout(self.refresh, 2000 ) //TODO - REFRESH THE PAGE WITH THE SAME URL
+                setTimeout(same_page , 2000 ) //TODO - REFRESH THE PAGE WITH THE SAME URL
             }
         }
      });
@@ -59,8 +59,6 @@ function next_one(){
     self.location = httpUrl
 }
 
-
-
-
-
-
+function same_page(){
+    location.reload()
+}

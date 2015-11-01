@@ -2,7 +2,6 @@ require 'rails_helper'
 require_relative '../../spec/spec_helper'
 require_relative '../../lib/answer_selector'
 require_relative '../../app/controllers/memo_cards_controller'
-require_relative '../../config/initializers/devise'
 
 describe AnswerSelector do
   include AnswerSelector
