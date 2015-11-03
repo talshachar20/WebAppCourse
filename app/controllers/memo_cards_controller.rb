@@ -1,6 +1,7 @@
 require_relative '../../lib/answer_selector'
 require_relative '../../lib/check_answers'
 require_relative '../../lib/count_for_result'
+require_relative '../../lib/user_status'
 require 'yaml'
 include AnswerSelector
 include CheckAnswers
@@ -87,12 +88,7 @@ class MemoCardsController < ApplicationController
 
   def get_new_status_for_user
     current_user_id = current_user.id
-    @memo_cards.each do |memo_card|
-      counter = (Results.select("word_id").where(word_id: memo_card.id , user_id: current_user_id , is_correct: 1)).length.to_s
-      respond_to do |format|
-        format.json { render json: {counter: counters} }
-      end
-    end
+    get_new_status_for_user_from_module(@memo_cards , current_user_id)
   end
 
   private
