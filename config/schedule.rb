@@ -13,8 +13,10 @@
 #   rake "some:great:rake:task"
 # end
 #
- every 5.hours do
-   puts 'Hammuds'
+ every 2.minutes do
+   memoUpdate = MemoCard.find_by(word: 'aaaa')
+   memoUpdate.lang_id = '5'
+   memoUpdate.save
  end
 
 # Learn more: http://github.com/javan/whenever
