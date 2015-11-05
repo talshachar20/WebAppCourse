@@ -5,7 +5,7 @@
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -13,10 +13,12 @@
 #   rake "some:great:rake:task"
 # end
 #
- every 2.minutes do
-   memoUpdate = MemoCard.find_by(word: 'aaaa')
-   memoUpdate.lang_id = '5'
-   memoUpdate.save
+set :environment, :development
+set :output, 'app/whenever.log'
+
+ every 10.minutes do
+   puts "whats up ?"
+   rake "user_rate_worker:rate_users"
  end
 
 # Learn more: http://github.com/javan/whenever

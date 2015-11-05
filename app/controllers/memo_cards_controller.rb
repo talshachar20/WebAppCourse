@@ -91,6 +91,8 @@ class MemoCardsController < ApplicationController
     get_new_status_for_user_from_module(@memo_cards , current_user_id)
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_memo_card
