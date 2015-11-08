@@ -131,7 +131,14 @@ describe CheckAnswers do
 
   context 'given word and translation not match' do
     subject {check_for_right_answer('false translation' , @memo_card.word)}
-    it 'returns nil' do
+    it 'returns blank' do
+      expect(subject.blank?).to be(true)
+    end
+  end
+
+  context 'given word and translation are nil' do
+    subject {check_for_right_answer(nil , nil)}
+    it 'returns blank' do
       expect(subject.blank?).to be(true)
     end
   end

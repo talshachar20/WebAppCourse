@@ -1191,3 +1191,25 @@ user: 11 correct:1 wrong:1
 0.5
 user: 15 correct:5 wrong:3
 0.63
+rake aborted!
+Don't know how to build task 'events:my_task1'
+/Users/tal/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `eval'
+/Users/tal/.rvm/gems/ruby-2.0.0-p451/bin/ruby_executable_hooks:15:in `<main>'
+(See full trace by running task with --trace)
+user: 0 correct:0 wrong:0
+user: 1 correct:241 wrong:308
+0.44
+user: 3 correct:130 wrong:212
+0.38
+user: 4 correct:7 wrong:6
+0.54
+user: 5 correct:12 wrong:15
+0.44
+user: 6 correct:28 wrong:32
+0.47
+user: 7 correct:1 wrong:2
+0.33
+user: 11 correct:1 wrong:1
+0.5
+user: 15 correct:5 wrong:3
+0.63
