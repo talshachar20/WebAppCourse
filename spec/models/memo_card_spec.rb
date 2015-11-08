@@ -2,6 +2,7 @@ require 'rails_helper'
 require_relative '../../spec/spec_helper'
 require_relative '../../lib/answer_selector'
 require_relative '../../app/controllers/memo_cards_controller'
+require_relative '../../lib/check_answers'
 
 describe AnswerSelector do
   include AnswerSelector
@@ -113,3 +114,25 @@ describe CountForResult do
   end
 end
 
+describe CheckAnswers do
+  include CheckAnswers
+
+  before (:example) do
+    @user = User.create(id: 1, email: "example@test.com", password: "test" , user_type: 1)
+    @memo_card = MemoCard.create(:word => 'talTest' , :translation => 'test')
+  end
+
+  context 'given word and translation match'do
+    subject {check_for_right_answer(@memo_card.translation , @memo_card.word)}
+    it 'returns object' do
+       expect(subject.blank?).not_to be_nil
+    end
+  end
+
+  context 'given word and translation not match' do
+    subject {check_for_right_answer('false translation' , @memo_card.word)}
+    it 'returns nil' do
+      expect(subject.blank?).to be(true)
+    end
+  end
+end

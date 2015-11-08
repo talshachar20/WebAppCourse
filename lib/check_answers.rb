@@ -5,7 +5,7 @@ module CheckAnswers
     user_session_from_controller = user_session
     word_in_page = word_temp
     word_in_german = word_german
-    right_answer = MemoCard.select("id").where(translation: word_in_page , word: word_in_german)
+    right_answer = check_for_right_answer(word_in_page , word_in_german )
     answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
     next_answer = get_next_word_id(answer_id , user)
     if right_answer.empty?
@@ -25,6 +25,10 @@ module CheckAnswers
 
   private
 
+  def check_for_right_answer(translation,word )
+    MemoCard.select("id").where(translation: translation , word: word)
+  end
+
   def get_next_word_id(answer_id , user)
     next_word_id = MemoCard.select("id").where("id >" + answer_id).where(lang_id: user.user_type).first.to_param
     if next_word_id == nil
@@ -39,7 +43,7 @@ module CheckAnswers
     the_current_user = user.id
     session_id = session_id_from_controller
     Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 1 , :session_id => session_id)
-    logger.debug "True result entered to user id:  #{the_current_user}"
+    #logger.debug "True result entered to user id:  #{the_current_user}"
   end
 
   def wrong_answer_to_result(answer_id , user , session_id_from_controller)
