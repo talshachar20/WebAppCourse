@@ -5,10 +5,9 @@ module ApplicationHelper
     records_array = ActiveRecord::Base.connection.execute(top5_query)
     gogo_array = Array.new
     records_array.each do |record|
-      gogo_array << record.to_s.sub('"user_rate"=>0.54, 0=>' , 'user scored: ')
+      gogo_array << "User score: " + record[0].to_s
     end
-    return gogo_array
-    #return records_array[1].to_s.sub('"user_rate"=>0.54, 0=>' , 'user scored: ')
+    return gogo_array[0].to_s + "\n" + gogo_array[1].to_s + "\n"+ gogo_array[2].to_s
   end
 
 end
