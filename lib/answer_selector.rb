@@ -13,4 +13,8 @@ module AnswerSelector
     true_word = @memo_card.translation  #the correct answer
     return answers = [random_word , random_word_second, random_word_third , true_word].shuffle
   end
+
+  def console_test
+    puts "console testss"
+  end
 end

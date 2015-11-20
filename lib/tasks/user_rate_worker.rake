@@ -6,7 +6,7 @@ namespace :user_rate_worker do
     counters.each do |counter|
       puts "user: " + counter.user_id.to_s + " correct:"  + counter.answers_correct.to_s + " wrong:" + counter.answers_wrong.to_s
       unless counter.answers_correct < 1 or counter.answers_wrong < 1
-        rate_for_user = (counter.answers_correct.to_f / (counter.answers_wrong.to_f + counter.answers_correct.to_f)).round(2)
+        rate_for_user = (counter.answers_correct.to_f / (counter.answers_wrong.to_f + counter.answers_correct.to_f)).round(2) * 1000
         puts rate_for_user
         User.where(id: counter.user_id).update_all(user_rate: rate_for_user)
       end

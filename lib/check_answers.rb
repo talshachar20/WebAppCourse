@@ -10,13 +10,15 @@ module CheckAnswers
     next_answer = get_next_word_id(answer_id , user)
     if right_answer.empty?
       wrong_answer_to_result(answer_id , user , user_session_from_controller)
-      result_into_yaml(answer_id , user , user_session_from_controller , 0)
+      $redis.setnx( "wrong_answers_for_user_" + user.id.to_s , 0) #save to redis
+      $redis.incr("wrong_answers_for_user_" + user.id.to_s)
       respond_to do |format|
         format.json { render json: {answer:"false" , nextid:next_answer} }
       end
     else
       correct_answer_to_result(answer_id , user , user_session_from_controller)
-      result_into_yaml(answer_id , user , user_session_from_controller , 1)
+      $redis.setnx( "correct_answers_for_user_" + user.id.to_s , 0) #save to redis
+      $redis.incr("correct_answers_for_user_" + user.id.to_s)
       respond_to do |format|
         format.json { render json: {answer:"true" , nextid:next_answer } }
       end
@@ -53,13 +55,4 @@ module CheckAnswers
     logger.debug "Wrong result entered to user id:  #{the_current_user}"
   end
 
-  def result_into_yaml(answer_id , user , user_session_from_controller , is_correct)
-    @answers = {  user.id => ["user id" => user.id  , "word id" => answer_id ,  "is correct" => is_correct , "time created"=> Time.now , "session id" => user_session_from_controller]}
-    output = File.new('results.yaml' , 'a+')
-    output.puts YAML.dump(@answers)
-    output.close
-    got_data = YAML.load_file('results.yaml')
-    subject = got_data[:Subject_list]
-    puts "!!!*******!!!!" + got_data['word id'].to_yaml
-  end
 end

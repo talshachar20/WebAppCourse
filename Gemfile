@@ -62,4 +62,9 @@ group :test do
 end
 gem 'warden'
 gem 'whenever', :require => false
+gem 'redis' , :group =>  [:development , :test]
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+gem 'json', '1.8.1'
 #gem 'rspec-json_expectations'
