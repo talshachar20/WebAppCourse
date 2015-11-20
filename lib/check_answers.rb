@@ -18,7 +18,7 @@ module CheckAnswers
     else
       correct_answer_to_result(answer_id , user , user_session_from_controller)
       $redis.setnx( "correct_answers_for_user_" + user.id.to_s , 0) #save to redis
-      $redis.incr("correct_answers_for_user_" + user.id.to_s)
+      $redis.incr("correct_answers_for_user_" + user.id.to_s )
       respond_to do |format|
         format.json { render json: {answer:"true" , nextid:next_answer } }
       end
