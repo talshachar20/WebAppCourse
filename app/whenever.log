@@ -24851,3 +24851,69 @@ user: 11 correct:1 wrong:1
 500.0
 user: 15 correct:5 wrong:3
 630.0
+rake aborted!
+Don't know how to build task 'events:my_task1'
+/Users/tal/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+/Users/tal/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+(See full trace by running task with --trace)
+user: 0 correct:0 wrong:0
+user: 1 correct:296 wrong:368
+450.0
+user: 3 correct:139 wrong:221
+390.0
+user: 4 correct:7 wrong:6
+540.0
+user: 5 correct:12 wrong:15
+440.0
+user: 6 correct:28 wrong:32
+470.0
+user: 7 correct:1 wrong:2
+330.0
+user: 11 correct:1 wrong:1
+500.0
+user: 15 correct:5 wrong:3
+630.0
+rake aborted!
+Don't know how to build task 'events:my_task1'
+/Users/tal/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+/Users/tal/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+(See full trace by running task with --trace)
+user: 0 correct:0 wrong:0
+user: 1 correct:296 wrong:368
+450.0
+user: 3 correct:139 wrong:221
+390.0
+user: 4 correct:7 wrong:6
+540.0
+user: 5 correct:12 wrong:15
+440.0
+user: 6 correct:28 wrong:32
+470.0
+user: 7 correct:1 wrong:2
+330.0
+user: 11 correct:1 wrong:1
+500.0
+user: 15 correct:5 wrong:3
+630.0
+rake aborted!
+Don't know how to build task 'events:my_task1'
+/Users/tal/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+/Users/tal/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+(See full trace by running task with --trace)
+user: 0 correct:0 wrong:0
+user: 1 correct:296 wrong:368
+450.0
+user: 3 correct:139 wrong:221
+390.0
+user: 4 correct:7 wrong:6
+540.0
+user: 5 correct:12 wrong:15
+440.0
+user: 6 correct:28 wrong:32
+470.0
+user: 7 correct:1 wrong:2
+330.0
+user: 11 correct:1 wrong:1
+500.0
+user: 15 correct:5 wrong:3
+630.0

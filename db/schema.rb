@@ -21,14 +21,6 @@ ActiveRecord::Schema.define(version: 20151123134816) do
     t.string   "commenter"
   end
 
-  create_table "false_words", force: true do |t|
-    t.integer  "word_id"
-    t.text     "word"
-    t.integer  "level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "languages", force: true do |t|
     t.string   "language"
     t.integer  "lang_id"
