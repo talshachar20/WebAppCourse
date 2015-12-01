@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
 # Use sqlite3 as the database for Active Record
@@ -22,10 +21,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
+gem 'spring', group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,7 +38,7 @@ gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
-gem "rspec-rails", :group => [:development, :test]
+gem 'rspec-rails', :group => [:development, :test]
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 gem 'bootstrap-sass'
@@ -51,9 +48,9 @@ gem 'autoprefixer-rails'
 gem 'mocha'
 gem "pry", :group => [:development, :test]
 gem 'rspec-rails'
-gem 'capybara' , :git => 'git://github.com/jnicklas/capybara.git'
+gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
 gem 'selenium-webdriver'
-gem  'rspec-expectations'
+gem 'rspec-expectations'
 gem 'minitest'
 gem 'rack-test', group: :test
 gem 'test-unit'
@@ -62,9 +59,9 @@ group :test do
 end
 gem 'warden'
 gem 'whenever', :require => false
-gem 'redis' , :group =>  [:development , :test]
+gem 'redis', :group =>  [:development , :test]
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'json', '1.8.1'
-#gem 'rspec-json_expectations'
+# gem 'rspec-json_expectations'

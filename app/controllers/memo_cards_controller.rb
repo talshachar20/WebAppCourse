@@ -14,7 +14,7 @@ class MemoCardsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    logger.debug "Memo cards page"
+    logger.debug 'Memo cards page'
     @memo_cards = MemoCard.all
   end
 
@@ -38,12 +38,13 @@ class MemoCardsController < ApplicationController
   end
   # POST /memo_cards
   # POST /memo_cards.json
+
   def create
     @memo_card = MemoCard.new(memo_card_params)
     expire_page :action => :index
     respond_to do |format|
       if @memo_card.save
-        format.html { redirect_to @memo_card, notice: 'Memo card was successfully created.' }
+        format.html { redirect_to @memo_card, notice: 'Memo card was successfully created.'}
         format.json { render :show, status: :created, location: @memo_card }
       else
         format.html { render :new }
@@ -56,7 +57,7 @@ class MemoCardsController < ApplicationController
     expire_page :action => :index
     respond_to do |format|
       if @memo_card.update(memo_card_params)
-        format.html { redirect_to @memo_card, notice: 'Memo card was successfully updated.' }
+        format.html { redirect_to @memo_card, notice: 'Memo card was successfully updated.'}
         format.json { render :show, status: :ok, location: @memo_card }
       else
         format.html { render :edit }
@@ -70,7 +71,7 @@ class MemoCardsController < ApplicationController
   def destroy
     @memo_card.destroy
     respond_to do |format|
-      format.html { redirect_to memo_cards_url, notice: 'Memo card was successfully destroyed.' }
+      format.html { redirect_to memo_cards_url, notice: 'Memo card was successfully destroyed.'}
       format.json { head :no_content }
     end
   end
@@ -83,12 +84,12 @@ class MemoCardsController < ApplicationController
 
   def count_for_result
     session_id = session[:session_id]
-    count_for_result_from_module(current_user , session_id)
+    count_for_result_from_module(current_user, session_id)
   end
 
   def get_new_status_for_user
     current_user_id = current_user.id
-    get_new_status_for_user_from_module(@memo_cards , current_user_id)
+    get_new_status_for_user_from_module(@memo_cards, current_user_id)
   end
 
   private
@@ -99,6 +100,6 @@ class MemoCardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def memo_card_params
-      params.require(:memo_card).permit(:word , :translation, :word_id , :lang_id)
+      params.require(:memo_card).permit(:word, :translation, :word_id, :lang_id)
     end
 end

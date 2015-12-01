@@ -1,8 +1,7 @@
 namespace :user_rate_worker do
-  desc "TODO"
   task :rate_users => :environment do
-    counters = (Results.select("user_id , SUM(CASE is_correct WHEN 1 THEN 1 ELSE 0 END) AS answers_correct" ,
-                               "SUM(CASE is_correct WHEN 0 THEN 1 ELSE 0 END) AS answers_wrong").group("user_id"))
+    counters = (Results.select("user_id , SUM(CASE is_correct WHEN 1 THEN 1 ELSE 0 END) AS answers_correct",
+                               'SUM(CASE is_correct WHEN 0 THEN 1 ELSE 0 END) AS answers_wrong').group('user_id'))
     counters.each do |counter|
       puts "user: " + counter.user_id.to_s + " correct:"  + counter.answers_correct.to_s + " wrong:" + counter.answers_wrong.to_s
       unless counter.answers_correct < 1 or counter.answers_wrong < 1
