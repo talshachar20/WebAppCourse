@@ -14,7 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-app/whenever.log
+/app/whenever.log
 
 #idea files
 .idea/
