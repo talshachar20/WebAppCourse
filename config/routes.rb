@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :memo_cards
 
-  resources :comments
-
   resources :posts do
     resources :comments
   end
