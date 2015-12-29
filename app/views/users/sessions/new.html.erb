@@ -23,7 +23,9 @@
   </div>
 <% end %>
 
-<h1> Top 3 users: <h3>  <%=  top_three_users %>  </h3> </h1>
+<h1> Top 3 users: <h3>  <%=  if Rails.env.devlopement?
+                               top_three_users
+                                    end %>  </h3> </h1>
 
 
 <%= render "users/shared/links" %>

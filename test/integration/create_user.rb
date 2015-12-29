@@ -2,7 +2,6 @@ require_relative '../../test/test_helper'
 require_relative '../../spec/spec_helper'
 require_relative '../../app/controllers/memo_cards_controller'
 require_relative '../../app/models/user'
-#require_relative '../../spec/factories/users'
 require_relative '../../test/support/sign_in_support'
 require_relative '../../spec/rails_helper'
 
@@ -28,9 +27,8 @@ describe MemoCard do
   it 'updates random card' do
     memo_card = create(:memo_card)
     expect(memo_card.word).to eq('mein')
-    memo_card_update = {:word=> "dein", :translation=> "yours"}
+    memo_card_update = {word: 'dein', translation: 'yours'}
     memo_card.update(memo_card_update)
     expect(memo_card.word).to eq('dein')
   end
-
 end

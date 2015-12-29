@@ -1,4 +1,5 @@
 require_relative '../../spec/spec_helper'
+require_relative '../../spec/rails_helper'
 require 'factory_girl_rails'
 require_relative '../../lib/automation/memo_card_page'
 require_relative '../test_helper'
@@ -14,11 +15,11 @@ describe 'Testing login page' do
   #TODO - configure tags
 
   entry_data = {  #factory doesn't take from test db
-      :user_email => "tal.shachar16@gmail.com",
-      :user_password => "tazos128",
-      :memo_word => "tal",
-      :memo_translation => "test",
-      :answer => "my",
+      user_email: "tal.shachar16@gmail.com",
+      user_password: "tazos128",
+      memo_word:  "tal",
+      memo_translation: "test",
+      answer: "my",
   }
 
   appTest = nil
@@ -28,9 +29,9 @@ describe 'Testing login page' do
     MemoCard.destroy_all
     FactoryGirl.create(:languages)
     FactoryGirl.create(:user)
-    FactoryGirl.create(:memo_card , :lang_id=> 1)
+    #FactoryGirl.create(:memo_card , :lang_id=> 1)
     appTest = Base.new(Selenium::WebDriver.for :chrome)
-    wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    wait = Selenium::WebDriver::Wait.new(timeout: 10)
   end
 
   after(:each) do
@@ -58,7 +59,7 @@ describe 'Testing login page' do
 
   context 'memo cards page' do
     it 'should include only memo card from the same lang_id' do
-        FactoryGirl.create(:memo_card, :word=> 'tal' , :translation=> 'test', :lang_id=> 2 )
+        FactoryGirl.create(:memo_card, worw: 'tal' , translation: 'test', lang_id: 2 )
         result = appTest.visit_page.click_on_my_status
         result = result.navigate_to_login_page
         result.type_user_mail(entry_data[:user_email])
@@ -71,22 +72,22 @@ describe 'Testing login page' do
 
   context 'memo card index page' do
     before (:each) do
-      FactoryGirl.create(:memo_card, :word=> "dein" , :translation => "yours" , :lang_id=> 1)
+      FactoryGirl.create(:memo_card, :word => 'dein' , :translation => 'yours' , :lang_id => 1)
     end
     it 'should include 2 memo cards from the same lang_id' do
       result = appTest.visit_page.click_on_my_status
-      result  = result.navigate_to_login_page
+      result = result.navigate_to_login_page
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
-      memo_card_array = [result.choose_text_memo_card_by_index(1)  ,  result.choose_text_memo_card_by_index(2)]
+      memo_card_array = [result.choose_text_memo_card_by_index(1), result.choose_text_memo_card_by_index(2)]
       expect(memo_card_array.first).to include("mein")
-      expect(memo_card_array.second).to include("dein")
+      expect(memo_card_array.second).to include('dein')
     end
 
     it 'add new memo card button' do
       result = appTest.visit_page.click_on_my_status
-      result  = result.navigate_to_login_page
+      result = result.navigate_to_login_page
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
@@ -107,7 +108,7 @@ describe 'Testing login page' do
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       result = result.click_memo_card_by_index(1)
-      answer = result.find_answer_by_word("my")
+      answer = result.find_answer_by_word('my')
       expect(answer).to be true
     end
 
@@ -118,9 +119,8 @@ describe 'Testing login page' do
       result.type_password(entry_data[:user_password])
       result = result.submit_login
       result = result.click_memo_card_by_index(1)
-      result.click_on_answer_by_word("my")
-      expect(result.get_answer_status).should include("true")
+      result.click_on_answer_by_word('my')
+      expect(result.get_answer_status).should include('true')
     end
   end
-
 end
