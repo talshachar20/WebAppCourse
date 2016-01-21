@@ -38,7 +38,9 @@ gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
-gem 'rspec-rails', :group => [:development, :test]
+group :development, :test do
+  gem 'rspec-rails'
+end
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 gem 'bootstrap-sass'
@@ -47,7 +49,6 @@ gem 'twitter-bootstrap-rails'
 gem 'autoprefixer-rails'
 gem 'mocha'
 gem "pry", :group => [:development, :test]
-gem 'rspec-rails'
 gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
 gem 'selenium-webdriver'
 gem 'rspec-expectations'
@@ -55,7 +56,7 @@ gem 'minitest'
 gem 'rack-test', group: :test
 gem 'test-unit'
 group :test do
-  gem 'factory_girl_rails', :require => false
+  gem 'factory_girl_rails', :require => true
 end
 gem 'warden'
 gem 'whenever', :require => false

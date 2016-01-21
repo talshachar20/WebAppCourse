@@ -26,7 +26,6 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   #config.include Devise::TestHelpers, type: :helper
   #config.include Sorcery::TestHelpers::Rails::Integration, type: :feature
-  config.include FactoryGirl::Syntax::Methods
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   config.mock_with :mocha

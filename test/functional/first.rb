@@ -15,7 +15,7 @@ describe 'Testing login page' do
   #TODO - configure tags
 
   entry_data = {  #factory doesn't take from test db
-      user_email: "tal.shachar16@gmail.com",
+      user_email: "tal.shachar@gmail.com",
       user_password: "tazos128",
       memo_word:  "tal",
       memo_translation: "test",
@@ -29,7 +29,7 @@ describe 'Testing login page' do
     MemoCard.destroy_all
     FactoryGirl.create(:languages)
     FactoryGirl.create(:user)
-    #FactoryGirl.create(:memo_card , :lang_id=> 1)
+    FactoryGirl.create(:memo_card_first , :lang_id=> 1)
     appTest = Base.new(Selenium::WebDriver.for :chrome)
     wait = Selenium::WebDriver::Wait.new(timeout: 10)
   end
@@ -49,6 +49,7 @@ describe 'Testing login page' do
     it 'should login with credentials' do
       result = appTest.visit_page.click_on_my_status
       result = result.navigate_to_login_page
+      binding.pry
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
