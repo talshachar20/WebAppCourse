@@ -25,6 +25,8 @@ module RomanticDate
   class Date < Members
     include HelpersModule
     attr_reader :memebrName
+    attr_accessor :member1
+    attr_accessor :member2
 
     def initialize(first_member_name, first_member_city, second_member_name, second_member_city, first_member_sexual_ref, second_member_sexual_ref)
       @member1 = Members.new(first_member_name, 1, first_member_city, first_member_sexual_ref)
@@ -37,6 +39,7 @@ module RomanticDate
     end
 
     def is_same_sexual_ref
+      #puts " " + @member1.sexual_ref.to_s + " " + @member2.sexual_ref.to_s
       case @member1.sexual_ref == 'straight_male' && @member2.sexual_ref == 'straight_female'
         when true
           return true
