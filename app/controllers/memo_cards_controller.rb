@@ -2,7 +2,6 @@ require_relative '../../lib/answer_selector'
 require_relative '../../lib/check_answers'
 require_relative '../../lib/count_for_result'
 require_relative '../../lib/user_status'
-require 'yaml'
 include AnswerSelector
 include CheckAnswers
 include CountForResult
@@ -25,7 +24,7 @@ class MemoCardsController < ApplicationController
   # TODO: get definition between words and phrases - add type of memo_card
   def show
     @random_array = get_four_random_words
-    @word_id_array = MemoCard.select("id")
+    @word_id_array = MemoCard.select('id')
   end
 
   # GET /memo_cards/new
@@ -36,8 +35,6 @@ class MemoCardsController < ApplicationController
   # GET /memo_cards/1/edit
   def edit
   end
-  # POST /memo_cards
-  # POST /memo_cards.json
 
   def create
     @memo_card = MemoCard.new(memo_card_params)
@@ -54,7 +51,7 @@ class MemoCardsController < ApplicationController
   end
 
   def update
-    expire_page :action => :index
+    expire_page action: :index
     respond_to do |format|
       if @memo_card.update(memo_card_params)
         format.html { redirect_to @memo_card, notice: 'Memo card was successfully updated.'}
@@ -66,8 +63,6 @@ class MemoCardsController < ApplicationController
     end
   end
 
-  # DELETE /memo_cards/1
-  # DELETE /memo_cards/1.json
   def destroy
     @memo_card.destroy
     respond_to do |format|
@@ -80,7 +75,6 @@ class MemoCardsController < ApplicationController
     session_id = session[:session_id]
     check_answer_from_module(params[:word_temp], params[:word_in_german], current_user, session_id)
   end
-
 
   def count_for_result
     session_id = session[:session_id]
@@ -98,7 +92,6 @@ class MemoCardsController < ApplicationController
       @memo_card = MemoCard.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def memo_card_params
       params.require(:memo_card).permit(:word, :translation, :word_id, :lang_id)
     end
