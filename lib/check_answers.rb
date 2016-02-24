@@ -17,10 +17,10 @@ module CheckAnswers
       end
     else
       correct_answer_to_result(answer_id , user , user_session_from_controller)
-      $redis.setnx( "correct_answers_for_user_" + user.id.to_s , 0) #save to redis
+      $redis.setnx("correct_answers_for_user_" + user.id.to_s, 0) #save to redis
       $redis.incr("correct_answers_for_user_" + user.id.to_s )
       respond_to do |format|
-        format.json { render json: {answer:"true" , nextid:next_answer } }
+        format.json { render json: {answer: 'true' , nextid:next_answer } }
       end
     end
   end
@@ -44,14 +44,14 @@ module CheckAnswers
   def correct_answer_to_result(answer_id , user , session_id_from_controller)
     the_current_user = user.id
     session_id = session_id_from_controller
-    Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 1 , :session_id => session_id)
+    Results.create(user_id: the_current_user, word_id: answer_id, :is_correct => 1, session_id: session_id)
     #logger.debug "True result entered to user id:  #{the_current_user}"
   end
 
   def wrong_answer_to_result(answer_id , user , session_id_from_controller)
     the_current_user = user.id
     session_id = session_id_from_controller
-    Results.create(:user_id => the_current_user , :word_id => answer_id , :is_correct => 0 , :session_id => session_id)
+    Results.create(user_id: the_current_user, word_id: answer_id, is_correct: 0, session_id:session_id)
     logger.debug "Wrong result entered to user id:  #{the_current_user}"
   end
 end

@@ -25,20 +25,4 @@ class ApplicationController < ActionController::Base
   def my_logger
     @@my_logger = Logger.new("#{Rails.root}/log/my.log")
   end
-
-
-  # def storing_user_data(action)
-  #   @@store.transaction do
-  #     @@store[:userid_store] = current_user.id
-  #     @@store[:time_last_updated_store] = Time.now
-  #     @@store[:action_made_by_user] = action
-  #   end
-  # end
-  #
-  # def return_user_data_from_pstore
-  #   current_user_id =  @@store.transaction { @@store[:userid_store] }
-  #   current_time =  @@store.transaction { @@store[:time_last_updated_store] }
-  #   action_by_user =  @@store.transaction { @@store[:action_made_by_user] }
-  #   return "action: " + action_by_user.to_s + " userid: " + current_user_id.to_s + " time: " +  current_time.to_s
-  # end
 end

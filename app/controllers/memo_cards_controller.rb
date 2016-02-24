@@ -13,6 +13,7 @@ class MemoCardsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    is_admin
     logger.debug 'Memo cards page'
     @memo_cards = MemoCard.all
   end
@@ -41,7 +42,7 @@ class MemoCardsController < ApplicationController
     expire_page :action => :index
     respond_to do |format|
       if @memo_card.save
-        format.html { redirect_to @memo_card, notice: 'Memo card was successfully created.'}
+        format.html { redirect_to @memo_card, notice: 'Memo card was successfully created.' }
         format.json { render :show, status: :created, location: @memo_card }
       else
         format.html { render :new }
@@ -54,7 +55,7 @@ class MemoCardsController < ApplicationController
     expire_page action: :index
     respond_to do |format|
       if @memo_card.update(memo_card_params)
-        format.html { redirect_to @memo_card, notice: 'Memo card was successfully updated.'}
+        format.html { redirect_to @memo_card, notice: 'Memo card was successfully updated.' }
         format.json { render :show, status: :ok, location: @memo_card }
       else
         format.html { render :edit }
@@ -94,5 +95,12 @@ class MemoCardsController < ApplicationController
 
     def memo_card_params
       params.require(:memo_card).permit(:word, :translation, :word_id, :lang_id)
+    end
+
+    def is_admin
+      admin = params[:admin]
+      if admin == "true"
+        puts "Admin mode"
+      end
     end
 end

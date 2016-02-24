@@ -38,10 +38,9 @@
 </table>
     <table id="user_stats">
       <tbody>
-
          <h3> User stats: </h3>
          <tr>
-            <td>  <h4> correct answers: <%= ($redis.get("correct_answers_for_user_" + current_user.id.to_s + " ")).to_i %> </h4> </td>
+            <td>  <h4> correct answers: <%= ($redis.get("correct_answers_for_user_" + current_user.id.to_s)).to_i %> </h4> </td>
             <td> <h4> wrong answers: <%= ($redis.get("wrong_answers_for_user_" + current_user.id.to_s)).to_i %> </h4> </td>
          </tr>
              <h4> last login: <%= current_user.last_sign_in_at %> </h4>
