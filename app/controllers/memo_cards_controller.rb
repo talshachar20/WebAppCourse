@@ -79,7 +79,8 @@ class MemoCardsController < ApplicationController
 
   def count_for_result
     session_id = session[:session_id]
-    count_for_result_from_module(current_user, session_id)
+    is_admin = params[:dbg_mode]
+    count_for_result_from_module(current_user, session_id, is_admin)
   end
 
   def get_new_status_for_user

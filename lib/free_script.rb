@@ -31,7 +31,7 @@ module RomanticDate
     def initialize(first_member_name, first_member_city, second_member_name, second_member_city, first_member_sexual_ref, second_member_sexual_ref)
       @member1 = Members.new(first_member_name, 1, first_member_city, first_member_sexual_ref)
       @member2 = Members.new(second_member_name, 2, second_member_city, second_member_sexual_ref)
-      @location = 'Berlin' #default
+      @location = 'Berlin' # default
     end
 
     def change_meeting_location(new_location)
@@ -56,11 +56,11 @@ module RomanticDate
         when true
           return true
       end
-        return false
+        false
     end
   end
 end
 
-#Excutable area
-new_romantic = RomanticDate::Date.new(ARGV[0],ARGV[1], ARGV[2], ARGV[3], ARGV[4], ARGV[5])
+# Excutable area
+new_romantic = RomanticDate::Date.new(ARGV[0], ARGV[1], ARGV[2], ARGV[3], ARGV[4], ARGV[5])
 puts new_romantic.date_string

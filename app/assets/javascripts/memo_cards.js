@@ -30,7 +30,7 @@ $(document).on("click" ,"#calculate",function(){
     $.ajax({ type: 'GET',
         url: '1/count_for_result' ,
         dataType: "json",
-        data: {},
+        data: { "dbg_mode": "false"},
         error: function(){
             alert("oops!");
         },
@@ -41,6 +41,9 @@ $(document).on("click" ,"#calculate",function(){
             }
             else {
                 $("#calculate").html("Bad Kooshkoosh !     " + "<img src='/assets/s2.jpg' />")
+            }
+            if (json.admin_user == "true") {
+                $("#calculate").html("DEBUG_MODE!!" + json.debug_results)
             }
         }
     });
