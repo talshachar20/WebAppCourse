@@ -6,14 +6,14 @@ var dbgMode = location.search.split('dbg_mode=')[1]
 $(document).on("click" ,".answer",function(){
     clicked_answer = $(this).text().trim()  //retrieve the clicked answer
     $.ajax({ type: 'GET',
-        url: '1/check_answer' ,
+        url: '1/check_answer',
         dataType: "json",
-        data: {"word_temp": clicked_answer , "word_in_german": $("#question").text().trim()},
+        data: {"word_temp": clicked_answer , "word_in_german": $("#question").text().trim(), "dbg_mode": dbgMode},
         error: function(){
            alert("something went wrong :/");
         },
         success: function(json) {
-            $("#theAnswerIs").html(clicked_answer + " is: " + json.answer )
+            $("#theAnswerIs").html(clicked_answer + " is: " + json.answer)
             var nextid =json.nextid
             httpUrl = '/memo_cards/' + nextid
             if (json.answer == "true") {
