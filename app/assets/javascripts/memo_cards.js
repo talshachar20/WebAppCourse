@@ -1,9 +1,9 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
  // You can use CoffeeScript in this file: http://coffeescript.org/
+var dbgMode = location.search.split('dbg_mode=')[1]
 
 $(document).on("click" ,".answer",function(){
-
     clicked_answer = $(this).text().trim()  //retrieve the clicked answer
     $.ajax({ type: 'GET',
         url: '1/check_answer' ,
@@ -30,7 +30,7 @@ $(document).on("click" ,"#calculate",function(){
     $.ajax({ type: 'GET',
         url: '1/count_for_result' ,
         dataType: "json",
-        data: { "dbg_mode": "false"},
+        data: { "dbg_mode": dbgMode},
         error: function(){
             alert("oops!");
         },

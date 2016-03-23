@@ -18,6 +18,7 @@ module CountForResult
   end
 
   def debug_results_mode(user, session_id)
-    Results.select(:id, :is_correct, :created_at).where(user_id: user.id, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).to_sql
+    dbg_results = Results.select(:id, :is_correct, :created_at).where(user_id: user.id, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    dbg_results.map {|i| [" record: " ,i.id, " is_correct? " ,i.is_correct, "time: " , i.created_at]}
   end
 end

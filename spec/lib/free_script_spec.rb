@@ -1,6 +1,6 @@
-require 'rails_helper'
 require_relative '../../spec/spec_helper'
-require '/Users/tal/TalWebCourse01/blog/lib/free_script.rb'
+require_relative '../../spec/rails_helper'
+require_relative '../../lib/free_script'
 
 describe 'Free script' do
   let(:romantic_date) { RomanticDate::Date.new('Tal', 'Test', 'Gal', 'Test2', 'gay_male', 'gay_male') }
