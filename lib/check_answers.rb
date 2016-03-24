@@ -8,29 +8,23 @@ module CheckAnswers
     right_answer = check_for_right_answer(word_in_page , word_in_german )
     @dbgResults = ""
     answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
-    next_answer = get_next_word_id(answer_id , user)
+    next_answer = get_next_word_id(answer_id, user)
+
     if right_answer.empty?
-      wrong_answer_to_result(answer_id , user , user_session_from_controller)
+      wrong_answer_to_result(answer_id, user , user_session_from_controller)
       $redis.setnx( "wrong_answers_for_user_" + user.id.to_s , 0) #save to redis
       $redis.incr("wrong_answers_for_user_" + user.id.to_s)
-      respond_to do |format|
-        format.json { render json: {answer:"false" , nextid:next_answer} }
-      end
+      return "false", next_answer
     else
-
       correct_answer_to_result(answer_id , user , user_session_from_controller)
       $redis.setnx("correct_answers_for_user_" + user.id.to_s, 0) #save to redis
       $redis.incr("correct_answers_for_user_" + user.id.to_s )
-      respond_to do |format|
-        format.json { render json: {answer: 'true' , nextid:next_answer } }
-      end
+      return "true", next_answer
     end
   end
 
-  private
-
   def check_for_right_answer(translation,word )
-    MemoCard.select("id").where(translation: translation , word: word)
+    MemoCard.select("id").where(translation: translation, word: word)
   end
 
   def get_next_word_id(answer_id , user)
@@ -43,14 +37,14 @@ module CheckAnswers
     end
   end
 
-  def correct_answer_to_result(answer_id , user , session_id_from_controller)
+  def correct_answer_to_result(answer_id, user, session_id_from_controller)
     the_current_user = user.id
     session_id = session_id_from_controller
     Results.create(user_id: the_current_user, word_id: answer_id, :is_correct => 1, session_id: session_id)
     #logger.debug "True result entered to user id:  #{the_current_user}"
   end
 
-  def wrong_answer_to_result(answer_id , user , session_id_from_controller)
+  def wrong_answer_to_result(answer_id, user, session_id_from_controller)
     the_current_user = user.id
     session_id = session_id_from_controller
     Results.create(user_id: the_current_user, word_id: answer_id, is_correct: 0, session_id:session_id)

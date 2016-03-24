@@ -5,5 +5,3 @@ FactoryGirl.define do
       user_type 1
     end
 end
-
-

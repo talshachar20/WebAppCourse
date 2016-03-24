@@ -75,7 +75,10 @@ class MemoCardsController < ApplicationController
   def check_answer
     session_id = session[:session_id]
     is_admin = params[:dbg_mode]
-    check_answer_from_module(params[:word_temp], params[:word_in_german], current_user, session_id, is_admin)
+    result = check_answer_from_module(params[:word_temp], params[:word_in_german], current_user, session_id, is_admin)
+    respond_to do |format|
+       format.json { render json: {answer:result[0], nextid:result[1]} }
+     end
   end
 
   def count_for_result
