@@ -5,14 +5,13 @@ module CheckAnswers
     user_session_from_controller = user_session
     word_in_page = word_temp
     word_in_german = word_german
-    right_answer = check_for_right_answer(word_in_page , word_in_german )
+    right_answer = check_for_right_answer(word_in_page, word_in_german)
     @dbgResults = ""
     answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
     if answer_id == nil
       answer_id = "0" #edge case if there is no id for it in the database
     end
     next_answer = get_next_word_id(answer_id, user)
-
     if right_answer.empty?
       wrong_answer_to_result(answer_id, user , user_session_from_controller)
       $redis.setnx( "wrong_answers_for_user_" + user.id.to_s , 0) #save to redis
