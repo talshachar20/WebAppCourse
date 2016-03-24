@@ -8,6 +8,9 @@ module CheckAnswers
     right_answer = check_for_right_answer(word_in_page , word_in_german )
     @dbgResults = ""
     answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
+    if answer_id == nil
+      answer_id = "0" #edge case if there is no id for it in the database
+    end
     next_answer = get_next_word_id(answer_id, user)
 
     if right_answer.empty?
@@ -48,6 +51,6 @@ module CheckAnswers
     the_current_user = user.id
     session_id = session_id_from_controller
     Results.create(user_id: the_current_user, word_id: answer_id, is_correct: 0, session_id:session_id)
-    logger.debug "Wrong result entered to user id:  #{the_current_user}"
+    #logger.debug "Wrong result entered to user id:  #{the_current_user}"
   end
 end
