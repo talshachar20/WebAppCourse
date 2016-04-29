@@ -89,7 +89,10 @@ class MemoCardsController < ApplicationController
 
   def get_new_status_for_user
     current_user_id = current_user.id
-    get_new_status_for_user_from_module(@memo_cards, current_user_id)
+    result = get_new_status_for_user_from_module(@memo_cards, current_user_id)
+    respond_to do |format|
+      format.json { render json: {counter: result[0]} }
+    end
   end
 
   private
