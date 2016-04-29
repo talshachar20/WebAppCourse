@@ -19,7 +19,7 @@ class MemoCardsController < ApplicationController
   end
 
   def get_four_random_words
-     get_four_random_words_from_module(current_user)
+     get_four_random_words_from_module(current_user, MemoCard, memo_card)
   end
 
   # TODO: get definition between words and phrases - add type of memo_card

@@ -185,6 +185,10 @@ GEM
     ref (1.0.5)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
+    rspec-activemodel-mocks (1.0.3)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      rspec-mocks (>= 2.99, < 4.0)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -289,6 +293,7 @@ DEPENDENCIES
   redis-namespace
   redis-rack-cache
   redis-rails
+  rspec-activemodel-mocks
   rspec-expectations
   rspec-rails
   sass-rails (~> 4.0.3)
@@ -305,4 +310,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
