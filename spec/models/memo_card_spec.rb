@@ -23,7 +23,7 @@ describe AnswerSelector do
     end
 
     context 'with the same lang_id' do
-      subject {get_four_random_words_from_module(@user)}
+      subject {get_four_random_words_from_module(@user, MemoCard, @memo_card)}
       it "includes the correct answer" do
         expect(subject).to include('test')
       end
