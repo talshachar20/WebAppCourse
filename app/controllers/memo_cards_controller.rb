@@ -16,6 +16,7 @@ class MemoCardsController < ApplicationController
     is_admin
     logger.debug 'Memo cards page'
     @memo_cards = MemoCard.all
+    set_cookie
   end
 
   def get_four_random_words
@@ -109,5 +110,9 @@ class MemoCardsController < ApplicationController
       if admin == "true"
         puts "Admin mode"
       end
+    end
+
+    def set_cookie
+      cookies[:user_id] = current_user.id
     end
 end
