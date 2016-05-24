@@ -83,11 +83,5 @@ describe 'Free script' do
     end
     #to use allows
     #      expect(romantic_date.member1.member_name).to eq('Shacha')
-
-    context 'when allowing' do
-      it 'updates' do
-
-      end
-    end
   end
 end

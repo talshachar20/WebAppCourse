@@ -16,7 +16,7 @@ class Members
 end
 
 module HelpersModule
-  def date_string
+  def self.date_string
     return "The date between #{@member1.member_name} and #{@member2.member_name} will take place in #{@location}" unless !is_same_sexual_ref
   end
 end
