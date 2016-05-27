@@ -15,7 +15,7 @@ describe 'Testing login page' do
   #TODO - configure tags
 
   entry_data = {  #factory doesn't take from test db
-      user_email: "tal.shachar24@gmail.com",
+      user_email: "tal.shachar202@gmail.com",
       user_password: "tazos128",
       memo_word:  "tal",
       memo_translation: "test",
@@ -66,7 +66,8 @@ describe 'Testing login page' do
         result.type_password(entry_data[:user_password])
         result = result.submit_login
         memo_cards = result.count_memo_cards
-        expect(memo_cards).to be(1)
+        binding.pry
+        expect(memo_cards).to eq(1)
     end
   end
 

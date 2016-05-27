@@ -60,7 +60,7 @@ class MemoCardIndexPage < Base
     @selectors = {
         :NEW_DESIGN_TEXT => {id: 'newDesign'} ,
         :WORD_STATUS_COLUMN =>  {id: 'statusBar'} ,
-        :MEMO_CARD_LIST => {xpath:  '/html/body/table/tbody'} ,
+        :MEMO_CARD_LIST => {xpath:  '//*[@id="newDesign"]/tbody'} ,
         :NEW_MEMO_CARD_BUTTON => {id: 'create_new_memo_card'}
     }
   end
