@@ -1,4 +1,3 @@
-require_relative '../spec_helper'
 require_relative '../../spec/rails_helper'
 require_relative '../../lib/check_answers'
 
@@ -8,8 +7,10 @@ RSpec.describe 'check answers module' do
     translation: 'test2'
   }
   before {
+    #needs redis
     system('ls')  #very usable - system call
     MemoCard.destroy_all
+    User.destroy_all
     @first_memo = FactoryGirl.create(:memo_card_first, word: 'test2', translation: 'test2', lang_id: 1)
     @second_memo = FactoryGirl.create(:memo_card_second, lang_id: 1)
   }

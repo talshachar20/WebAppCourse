@@ -9,4 +9,9 @@ class WidgetsController < ApplicationController
     end
   end
 
+
+  def create_memo
+    MemoCard.create(word: 'talTestFromPost', translation: 'test')
+  end
+
 end

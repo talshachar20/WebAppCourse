@@ -9,12 +9,10 @@ require_relative '../../lib/automation/new_memo_card_page'
 require 'capybara/rspec'
 
 describe 'Testing login page' do
-  #RAILS_ENV=test rails s
-  #bundle exec rake db:reset RAILS_ENV=test - clean db
   #TODO - configure wait element
   #TODO - configure tags
 
-  entry_data = {  #factory doesn't take from test db
+  entry_data = {
       user_email: "tal.shachar202@gmail.com",
       user_password: "tazos128",
       memo_word:  "tal",
