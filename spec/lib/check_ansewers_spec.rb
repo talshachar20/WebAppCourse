@@ -11,9 +11,10 @@ RSpec.describe 'check answers module' do
     system('ls')  #very usable - system call
     MemoCard.destroy_all
     User.destroy_all
-    @first_memo = FactoryGirl.create(:memo_card_first, word: 'test2', translation: 'test2', lang_id: 1)
     @second_memo = FactoryGirl.create(:memo_card_second, lang_id: 1)
   }
+
+  let!(:first_memo) { FactoryGirl.create(:memo_card_first, word: 'test2', translation: 'test2', lang_id: 1) }
 
   let(:check_answer) { Class.new {extend CheckAnswers} }
   subject { check_answer }

@@ -12,23 +12,23 @@ context 'Answer selector module' do
   let(:memo_card) { FactoryGirl.create(:memo_card_first, word: 'test1', translation: 'test1', lang_id: 1) }
 
   subject {answer_selector.get_four_random_words_from_module(user_test2, MemoCard, memo_card)}
-  it 'should return 4 answers' do
-    subject.count.should eq(4)
+
+  context 'when requesting for answers' do
+    it 'should return 4 answers' do
+      subject.count.should eq(4)
+    end
   end
 
-  it 'returns default answers when there are no others in the database' do
-    #TODO look for a way to compare hash
-    subject.should include('default')
+  context 'when there are no other words in the database' do
+    it 'returns default answers' do
+      subject.should match_array(['default', 'default', 'default', 'test1'])
+    end
   end
 
-  it 'randomize the order of the answers' do
-    #TODO look for a way to test shuffle
-    #subject.should eq('test1')
-  end
-
-  it 'shows false answers when it exist on db' do
-    #TODO look for a way to test shuffle
-     FactoryGirl.create(:memo_card_second,id: 4, word: 'test2', translation: 'test2', lang_id: 1)
-    subject.should include('test2', 'test1')
+  context 'when adding memo card to the database' do
+    let!(:extra_memo) { FactoryGirl.create(:memo_card_second,id: 4, word: 'test2', translation: 'test2', lang_id: 1) }
+    it 'shows false answers when it exist on db and returns true answer only once' do
+      subject.should match_array(['test2', 'test1', 'test2', 'test2'])
+    end
   end
 end
