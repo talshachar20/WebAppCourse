@@ -65,3 +65,7 @@ function next_one(){
 function same_page(){
     location.reload()
 }
+
+function TestFunction() {
+    this.theNumber = 5;
+}

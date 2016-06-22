@@ -8,6 +8,7 @@ RSpec.describe MemoCardsController do
   let(:memo_cards) { MemoCard.all }
 
   before do
+    User.destroy_all
     user = FactoryGirl.create(:user)
     allow(controller).to receive(:authenticate_user!).and_return(true)
     allow(controller).to receive(:current_user).and_return(user)

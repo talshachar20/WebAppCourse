@@ -12,17 +12,17 @@ module CheckAnswers
       answer_id = "0" #edge case if there is no id for it in the database
     end
     next_answer = get_next_word_id(answer_id, user)
-    if right_answer.empty?
-      wrong_answer_to_result(answer_id, user , user_session_from_controller)
-      $redis.setnx( "wrong_answers_for_user_" + user.id.to_s , 0) #save to redis
-      $redis.incr("wrong_answers_for_user_" + user.id.to_s)
-      return "false", next_answer
-    else
-      correct_answer_to_result(answer_id , user , user_session_from_controller)
-      $redis.setnx("correct_answers_for_user_" + user.id.to_s, 0) #save to redis
-      $redis.incr("correct_answers_for_user_" + user.id.to_s )
-      return "true", next_answer
-    end
+      if right_answer.empty?
+        wrong_answer_to_result(answer_id, user , user_session_from_controller)
+        $redis.setnx( "wrong_answers_for_user_" + user.id.to_s , 0) #save to redis
+        $redis.incr("wrong_answers_for_user_" + user.id.to_s)
+        return "false", next_answer
+      else
+        correct_answer_to_result(answer_id , user , user_session_from_controller)
+        $redis.setnx("correct_answers_for_user_" + user.id.to_s, 0) #save to redis
+        $redis.incr("correct_answers_for_user_" + user.id.to_s )
+        return "true", next_answer
+      end
   end
 
   def check_for_right_answer(translation,word )
