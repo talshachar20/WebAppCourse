@@ -1,0 +1,14 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+describe	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^describe("memo_card", function() {$/;"	function	line:1
+beforeEach	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^  beforeEach(function() {$/;"	function	line:4
+describe	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^  describe ("when we have more right answers then wrong ones", function() {$/;"	function	line:9
+it	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^    it("returns good Kooshkoosh", function() {$/;"	function	line:10
+describe	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^  describe ("when we have more wrong answers then correct ones", function() {$/;"	function	line:17
+it	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^    it("returns bad Kooshkoosh", function() {$/;"	function	line:18
+describe	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^  describe ("when we have same amount of wrong and write answers", function() {$/;"	function	line:25
+it	/Users/tal/TalWebCourse/blog/spec/javascripts/MemocardSpec.js	/^    it("returns bad Kooshkoosh", function() {$/;"	function	line:26
