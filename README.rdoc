@@ -7,5 +7,22 @@ Things you may want to cover:
 
 * Debug mode : add dbg_mode=true
 
-Please feel free to use a different markup language if you do not plan to run
+to run server locally
+  * please run 'redis-server'
+  * run 'rails s'
+  * view application in the given url from previous step (example: http://localhost:8080/)
+
+to for running Integration and unit tests:
+  * please run 'redis-server'
+  * run 'rspec'
+
+to run selenium tests
+  * run rails server on test 'RAILS_ENV=test rails s'
+  * please run 'redis-server'
+  * run rspec with selnium tests (for example: rspec test/functional/real_user_test.rb)
+
+to run Jasmine js tests
+  * run 'rake jasmine'
+  * view tests result with the url given from the previous step (example: http://localhost:8888/)
+
 <tt>rake doc:app</tt>.
