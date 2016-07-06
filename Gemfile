@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -35,7 +35,7 @@ gem 'spring', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'therubyracer'
-gem 'devise'
+gem 'devise', '~> 3.2'
 gem 'omniauth'
 gem 'omniauth-digitalocean'
 group :development, :test do
@@ -68,5 +68,5 @@ gem 'json', '1.8.1'
 gem 'poltergeist', '1.8.1'
 # gem 'rspec-json_expectations'
 gem 'rspec-activemodel-mocks'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 gem 'jasmine', '~> 2.4'
