@@ -20,7 +20,7 @@ class Base
 
     def initialize(driver)
       @@driver = driver
-      wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+      wait = Selenium::WebDriver::Wait.new(:timeout => 3)
     end
 
     def visit_page(url='/')
@@ -88,5 +88,4 @@ class Base
     def find_element(element)
       @@driver.find_element(element)
     end
-
 end

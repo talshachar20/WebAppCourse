@@ -5,7 +5,6 @@ require 'capybara/node/finders'
 
 class MemoCardPage < Base
 
-
   attr_reader :driver , :selectors
   def initialize(driver)
     super(driver)
@@ -59,7 +58,7 @@ class MemoCardPage < Base
 
   def navigate_to_login_page
     puts "Navigating to login page"
-    login =  find selectors[:LOGIN_LINK]
+    login = find selectors[:LOGIN_LINK]
     login.click
     return LoginPage.new(@@driver)
   end
@@ -73,9 +72,7 @@ class MemoCardPage < Base
       :ABOUT_BUTTON =>  {xpath: '/html/body/div[1]/ul/li[3]/a'},
       :UPPERPART => { id: 'messages'  },
       :ALL_PAGE_TEXT => {xpath: '//*'},
-      :LOGIN_LINK => {id: 'login_link'}
+      :LOGIN_LINK => {id: 'login_link'},
     }
   end
-
 end
-

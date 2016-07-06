@@ -67,6 +67,11 @@ class QuestionPage < Base
     #TODO - fix  , returns x
     text_of(selectors[:ANSWER_STATUS])
   end
+  
+  def back_to_index_page
+     click_on selectors[:BACK_BUTTON]
+     return MemoCardIndexPage.new(@@driver)
+  end
 
   private
   def initialize_selectors
@@ -77,6 +82,7 @@ class QuestionPage < Base
         :ANSWER3 => {id: 'answer3'},
         :ANSWER4 => {id: 'answer4'},
         :ANSWER_STATUS => {id: 'theAnswerIs'},
+        :BACK_BUTTON => {xpath: '/html/body/a[2]'}
     }
   end
 end

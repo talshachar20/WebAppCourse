@@ -45,6 +45,14 @@ class MemoCardIndexPage < Base
     return NewMemoCardPage.new(@@driver)
   end
 
+  def right_answers_text
+    text_of @selectors[:RIGHT_ANSWERS]
+  end
+
+  def wrong_answers_text
+    text_of @selectors[:WRONG_ANSWERS]
+  end
+
   private
 
   def selector_builder_for_memo_card_table(param)
@@ -55,13 +63,14 @@ class MemoCardIndexPage < Base
     return {xpath: '//*[@id="newDesign"]/tbody/tr['+param.to_s+']/td[5]' }
   end
 
-
   def initialize_selectors
     @selectors = {
         :NEW_DESIGN_TEXT => {id: 'newDesign'} ,
         :WORD_STATUS_COLUMN =>  {id: 'statusBar'} ,
         :MEMO_CARD_LIST => {xpath:  '//*[@id="newDesign"]/tbody'} ,
-        :NEW_MEMO_CARD_BUTTON => {id: 'create_new_memo_card'}
+        :NEW_MEMO_CARD_BUTTON => {id: 'create_new_memo_card'},
+        :RIGHT_ANSWERS => {xpath: '//*[@id="user_stats"]/tbody/tr/td[1]/h4'},
+        :WRONG_ANSWERS => {xpath: '//*[@id="user_stats"]/tbody/tr/td[2]/h4'},
     }
   end
 

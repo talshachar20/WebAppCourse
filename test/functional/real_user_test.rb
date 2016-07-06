@@ -64,7 +64,6 @@ describe 'Testing login page' do
         result.type_password(entry_data[:user_password])
         result = result.submit_login
         memo_cards = result.count_memo_cards
-        binding.pry
         expect(memo_cards).to eq(1)
     end
   end
@@ -79,7 +78,6 @@ describe 'Testing login page' do
       result.type_user_mail(entry_data[:user_email])
       result.type_password(entry_data[:user_password])
       result = result.submit_login
-      binding.pry
       memo_card_array = [result.choose_text_memo_card_by_index(1), result.choose_text_memo_card_by_index(2)]
       expect(memo_card_array.first).to include("mein")
       expect(memo_card_array.second).to include('dein')
@@ -120,7 +118,10 @@ describe 'Testing login page' do
       result = result.submit_login
       result = result.click_memo_card_by_index(1)
       result.click_on_answer_by_word('my')
-      expect(result.get_answer_status).should include('true')
+      result = result.back_to_index_page
+      expect(result.right_answers_text).to include('1')
+      expect(result.wrong_answers_text).to include('0')
+      #expect(result.get_answer_status).to include('true')
     end
   end
 end

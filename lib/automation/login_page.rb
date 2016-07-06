@@ -44,7 +44,7 @@ class LoginPage < Base
       :USER_MAIL_LOGIN => {id: 'user_email'},
       :USER_PASSWORD => {id: 'user_password'},
       :USER_REMEMBER_ME => {id: 'user_remember_me'},
-      :SUBMIT => {xpath: '//*[@id="new_user"]/div[5]/input'},
+      :SUBMIT => {css: '.actions>input'},
     }
   end
 end
