@@ -1,5 +1,5 @@
-require_relative '../../spec/rails_helper'
-require_relative '../../lib/check_answers'
+require_relative "#{Rails.root}/spec/rails_helper"
+require_relative "#{Rails.root}/lib/check_answers"
 
 RSpec.describe 'check answers module' do
   entry_data = {

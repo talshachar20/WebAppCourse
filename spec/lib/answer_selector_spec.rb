@@ -1,5 +1,5 @@
-require_relative '../../spec/rails_helper'
-require_relative '../../lib/answer_selector'
+require_relative "#{Rails.root}/spec/rails_helper"
+require_relative "#{Rails.root}/lib/answer_selector"
 
 context 'Answer selector module' do
   before {

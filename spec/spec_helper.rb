@@ -17,6 +17,7 @@
 
 require 'factory_girl_rails'
 require 'devise'
+require './test/test_helper'
 #require "rspec/json_expectations"
 
 #require_relative '../spec/factories/users'

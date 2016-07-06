@@ -1,5 +1,5 @@
-require_relative '../../spec/rails_helper'
-require_relative '../../lib/free_script'
+require_relative "#{Rails.root}/spec/rails_helper"
+require_relative "#{Rails.root}/lib/free_script"
 
 describe 'Free script' do
   let(:romantic_date) { RomanticDate::Date.new('Ran', 'Test', 'Gal', 'Test2', 'gay_male', 'gay_male') }

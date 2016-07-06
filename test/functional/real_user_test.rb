@@ -1,17 +1,9 @@
-require_relative '../../spec/spec_helper'
-require_relative '../../spec/rails_helper'
-require 'factory_girl_rails'
-require_relative '../../lib/automation/memo_card_page'
-require_relative '../test_helper'
-require_relative '../../lib/automation/base_page'
-require_relative '../../lib/automation/login_page'
-require_relative '../../lib/automation/new_memo_card_page'
-require 'capybara/rspec'
+require "#{Rails.root}/spec/spec_helper"
+require "#{Rails.root}/lib/automation/memo_card_page"
+require "#{Rails.root}/lib/automation/login_page"
+require "#{Rails.root}/lib/automation/new_memo_card_page"
 
 describe 'Testing login page' do
-  #TODO - configure wait element
-  #TODO - configure tags
-
   entry_data = {
       user_email: "tal.shachar202@gmail.com",
       user_password: "tazos128",
@@ -121,7 +113,6 @@ describe 'Testing login page' do
       result = result.back_to_index_page
       expect(result.right_answers_text).to include('1')
       expect(result.wrong_answers_text).to include('0')
-      #expect(result.get_answer_status).to include('true')
     end
   end
 end
