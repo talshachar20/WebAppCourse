@@ -2,7 +2,6 @@ describe("memo_card", function() {
     var refresher;
 
   beforeEach(function() {
-      clicked_answer = "testdata"
       json = {};
   });
 
