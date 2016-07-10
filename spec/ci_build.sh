@@ -2,5 +2,5 @@
 
 gem install bundler --no-rdoc --no-ri --conservative
 bundle install
-echo "start test !!"
+echo "start tests !!"
 bundle exec rspec
