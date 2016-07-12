@@ -28,4 +28,12 @@ describe("memo_card", function() {
         expect(userDailyInfoVar.therun).toContain("Bad Kooshkoosh");
     });
   });
+
+  describe ("when usrt didnt reply on any answers", function() {
+    it("returns alert", function() {
+        json = {right_answers: null, wrong_answers: null};
+        userDailyInfoVar = new user_daily_info(json);
+        expect(userDailyInfoVar.therun).toContain("You havent replied any questions yet");
+    });
+  });
 });

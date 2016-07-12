@@ -10,8 +10,8 @@ default: &default
   timeout: 5000
   encoding: utf8
   reconnect: false
-  username: blog
-  password: blog
+  # username: blog
+  #  password: blog
 
 development:
   <<: *default

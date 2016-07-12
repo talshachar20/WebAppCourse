@@ -70,7 +70,10 @@ function user_daily_info(json) {
     var int_right_result = json.right_answers;
     var int_wrong_result = json.wrong_answers;
     this.message_to_div;
-    if (+int_right_result > +int_wrong_result) {
+    if (int_right_result == null && int_wrong_result == null) {
+        message_to_div = "You havent replied any questions yet"
+    }
+    else if (+int_right_result > +int_wrong_result) {
         message_to_div = "Good KooshKoosh      " + "<img src='/assets/s3.png' />";
     }
     else {
@@ -86,3 +89,9 @@ function user_daily_info(json) {
 function send_user_daily_data_to_html(message)  {
   $("#calculate").html(message_to_div);
 }
+
+$( "#jabala" ).click(function() {
+  $( "#jabala" ).fadeOut( "slow", function() {
+    // Animation complete.
+  });
+});
