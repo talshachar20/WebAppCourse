@@ -3,6 +3,11 @@ describe("memo_card", function() {
 
   beforeEach(function() {
       json = {};
+      jasmine.Ajax.install();
+  });
+
+  afterEach(function() {
+    jasmine.Ajax.uninstall();
   });
 
   describe ("when we have more right answers then wrong ones", function() {
@@ -31,9 +36,28 @@ describe("memo_card", function() {
 
   describe ("when usrt didnt reply on any answers", function() {
     it("returns alert", function() {
-        json = {right_answers: null, wrong_answers: null};
+        json = {right_answers: 0, wrong_answers: 0};
         userDailyInfoVar = new user_daily_info(json);
         expect(userDailyInfoVar.therun).toContain("You havent replied any questions yet");
+    });
+  });
+
+  describe ("when we getting null from answers", function() {
+    it("returns error", function() {
+        json = {right_answers: null, wrong_answers: null};
+        userDailyInfoVar = new user_daily_info(json);
+        expect(userDailyInfoVar.therun).toContain("Error occured");
+    });
+  });
+
+  describe ("test", function() {
+    it("returns test", function() {
+      clicked_answer = "test"
+      json2 = {answer: "true", nextid: 2}; //todo need to create memo card
+      spyOn(self, "next_one").and.returnValue(null);
+      spyOn(self, "same_page").and.returnValue(null);
+      //spyOn(self, "success_click_from_user").and.returnValue("true");
+      expect(self.success_click_from_user(json2)).toContain("true");
     });
   });
 });
