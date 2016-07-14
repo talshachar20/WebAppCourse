@@ -13,7 +13,7 @@
              alert("something went wrong :/");
           },
           success: function(json) {
-              success_click_from_user(json);
+            success_click_from_user(json);
           }
        });
   });
@@ -41,9 +41,9 @@
       }
   }
 
-  function next_one(){
+  var next_one = function(){
       self.location = httpUrl
-  }
+  };
 
   function same_page(){
       location.reload()
@@ -53,17 +53,20 @@
       this.theNumber = 5;
   }
 
-  function success_click_from_user(json) {
+  var success_click_from_user = function(json) {
+      testers("test");
       $("#theAnswerIs").html(clicked_answer + " is: " + json.answer)
-      var nextid =json.nextid
-      httpUrl = '/memo_cards/' + nextid
+      httpUrl = '/memo_cards/' + json.nextid
       if (json.answer == "true") {
-          setTimeout(next_one, 2000 )
+        setTimeout(next_one, 2000 )
       }
       else {
-          setTimeout(same_page , 2000 )
+        setTimeout(same_page, 2000 )
       }
-      return (clicked_answer + " is: " + json.answer);
+  };
+
+  function testers(value) {
+    return value;
   }
 
   function user_daily_info(json) {

@@ -1,9 +1,10 @@
 describe("memo_card", function() {
     var refresher;
+    var foo, bar = null;
 
   beforeEach(function() {
-      json = {};
-      jasmine.Ajax.install();
+    json = {};
+    jasmine.Ajax.install();
   });
 
   afterEach(function() {
@@ -50,14 +51,19 @@ describe("memo_card", function() {
     });
   });
 
-  describe ("test", function() {
+  describe ("success_click_from_user", function() {
     it("returns test", function() {
       clicked_answer = "test"
       json2 = {answer: "true", nextid: 2}; //todo need to create memo card
       spyOn(self, "next_one").and.returnValue(null);
       spyOn(self, "same_page").and.returnValue(null);
-      //spyOn(self, "success_click_from_user").and.returnValue("true");
-      expect(self.success_click_from_user(json2)).toContain("true");
+      spyOn(self, "success_click_from_user");
+      spyOn(self, "testers");
+      self.success_click_from_user(json2);
+      expect(self.success_click_from_user).toHaveBeenCalled();
+      expect(self.success_click_from_user).toHaveBeenCalledWith(json2);
+      //expect(self.testers).toHaveBeenCalledWith(2);
+      //expect(self.success_click_from_user).toHaveBeenCalledWith('f');
     });
   });
 });
