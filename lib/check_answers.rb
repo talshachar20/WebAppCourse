@@ -3,8 +3,8 @@ require 'yaml'
 module CheckAnswers
   def check_answer_from_module(word_temp , word_german , user , user_session, is_admin)
     user_session_from_controller = user_session
-    word_in_page = word_temp
-    word_in_german = word_german
+    word_in_page = word_temp.to_s
+    word_in_german = word_german.to_s
     right_answer = check_for_right_answer(word_in_page, word_in_german)
     @dbgResults = ""
     answer_id = MemoCard.select("id").where(word: word_in_german).first.to_param
