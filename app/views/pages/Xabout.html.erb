@@ -1,0 +1,31 @@
+<script type="text/javascript">
+  var Xabout = {
+    title:'About: ',
+    writer: 'Tal',
+    getTitle: function() {
+        return this.title;
+    }
+  }
+
+  var Album = function(song, leangth) {
+    this.album_title = album_title;
+    this.song_title = song;
+    function albumDetails() {
+      console.log("Album name: " + this.album_title + " with the song: " + this.song_title);
+    }
+   }
+
+</script>
+
+<div class='email_field' id='email_field'>
+  <script type="text/javascript">
+    $("#email_field").html(Xabout.getTitle());
+  </script> by tal
+</div>
+
+<div id='question'>
+  <%= label_tag(:age_child, "I am older than 21") %>
+  <%= radio_button_tag(:age, "adult") %>
+  <%= label_tag(:age_child, "I am younger than 21") %>
+  <%= radio_button_tag(:age, "adult") %>
+ </div>
