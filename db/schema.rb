@@ -13,70 +13,55 @@
 
 ActiveRecord::Schema.define(version: 20151123134816) do
 
-  create_table "comments", force: true do |t|
-    t.integer  "post_id"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "commenter"
-  end
-
-  create_table "languages", force: true do |t|
-    t.string   "language"
-    t.integer  "lang_id"
+  create_table "languages", force: :cascade do |t|
+    t.string   "language",   limit: 255
+    t.integer  "lang_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "memo_cards", force: true do |t|
-    t.string   "word"
-    t.integer  "word_id"
+  create_table "memo_cards", force: :cascade do |t|
+    t.string   "word",        limit: 255
+    t.integer  "word_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "translation"
-    t.integer  "lang_id"
+    t.string   "translation", limit: 255
+    t.integer  "lang_id",     limit: 4
   end
 
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "body"
+  create_table "results", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "word_id",    limit: 4
+    t.integer  "is_correct", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "session_id", limit: 4
   end
 
-  create_table "results", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "word_id"
-    t.integer  "is_correct"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "session_id"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "user_type"
-    t.boolean  "admin"
-    t.integer  "user_rate"
-    t.string   "user_last_login"
+    t.string   "user_type",              limit: 255
+    t.boolean  "admin",                  limit: 1,   default: false
+    t.integer  "user_rate",              limit: 4
+    t.string   "user_last_login",        limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "widgets", force: true do |t|
-    t.string   "name"
+  create_table "widgets", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

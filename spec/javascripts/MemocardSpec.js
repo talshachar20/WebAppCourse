@@ -58,12 +58,9 @@ describe("memo_card", function() {
       spyOn(self, "next_one").and.returnValue(null);
       spyOn(self, "same_page").and.returnValue(null);
       spyOn(self, "success_click_from_user");
-      spyOn(self, "testers");
       self.success_click_from_user(json2);
       expect(self.success_click_from_user).toHaveBeenCalled();
       expect(self.success_click_from_user).toHaveBeenCalledWith(json2);
-      //expect(self.testers).toHaveBeenCalledWith(2);
-      //expect(self.success_click_from_user).toHaveBeenCalledWith('f');
     });
   });
 });

@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: "widgets#index"
   devise_for :users
   resources :memo_cards
-
+  get "/pages/:page" => "pages#show"
+  
   resources :posts do
     resources :comments
   end

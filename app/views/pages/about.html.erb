@@ -1,0 +1,28 @@
+<script type="text/javascript">
+  var myModule = (function() {
+    myVar:"myVarosh"
+    return {
+      taltest: function(overrider) {
+        $("#email_field").html(overrider)
+      },
+      takeFromJson: function() {
+        $("#email_field").html(this.myVar)
+      }
+    }
+  }());
+
+  var song = {
+    title: "shit music",
+    artist: "shit artist",
+    getString: function() {
+      alert("This music called: " + this.title + " by " + this.artist)
+    }
+  };
+</script>
+
+<div class='email_field' id='email_field'>
+  <script type="text/javascript">
+    myModule.taltest("overrider2");
+    song.getString();
+  </script>
+</div>

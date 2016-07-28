@@ -49,12 +49,10 @@
       location.reload()
   }
 
-  function TestFunction() {
-      this.theNumber = 5;
-  }
-
   var success_click_from_user = function(json) {
-      testers("test");
+      // testers: function() {
+      //   return "test";
+      // }
       $("#theAnswerIs").html(clicked_answer + " is: " + json.answer)
       httpUrl = '/memo_cards/' + json.nextid
       if (json.answer == "true") {
@@ -64,10 +62,6 @@
         setTimeout(same_page, 2000 )
       }
   };
-
-  function testers(value) {
-    return value;
-  }
 
   function user_daily_info(json) {
       $("#results").html("Today you have: Right answers: " + json.right_answers + " Wrong answers: " + json.wrong_answers)
@@ -88,9 +82,6 @@
       }
       this.therun = message_to_div;
       send_user_daily_data_to_html(message_to_div)
-      //if (json.admin_user == "true") {
-      //    $("#calculate").html("DEBUG_MODE!!" + json.debug_results)
-      //}
   }
 
   function send_user_daily_data_to_html(message)  {
