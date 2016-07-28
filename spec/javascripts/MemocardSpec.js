@@ -4,11 +4,11 @@ describe("memo_card", function() {
 
   beforeEach(function() {
     json = {};
-    jasmine.Ajax.install();
+    //jasmine.Ajax.install();
   });
 
   afterEach(function() {
-    jasmine.Ajax.uninstall();
+    //jasmine.Ajax.uninstall();
   });
 
   describe ("when we have more right answers then wrong ones", function() {
