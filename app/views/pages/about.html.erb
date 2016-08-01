@@ -1,28 +1,52 @@
-<script type="text/javascript">
-  var myModule = (function() {
-    myVar:"myVarosh"
-    return {
-      taltest: function(overrider) {
-        $("#email_field").html(overrider)
-      },
-      takeFromJson: function() {
-        $("#email_field").html(this.myVar)
-      }
-    }
-  }());
+<html lang="en" ng-app> <!-- ng app is from angular-->
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"> </script>
+  </head>
 
-  var song = {
-    title: "shit music",
-    artist: "shit artist",
-    getString: function() {
-      alert("This music called: " + this.title + " by " + this.artist)
-    }
-  };
-</script>
-
-<div class='email_field' id='email_field'>
   <script type="text/javascript">
-    myModule.taltest("overrider2");
-    song.getString();
+    var myModule = (function() {
+      myVar:"myVarosh"
+      return {
+        taltest: function(overrider) {
+          $("#email_field").html(overrider)
+        },
+        takeFromJson: function() {
+          $("#email_field").html(this.myVar)
+        }
+      }
+    }());
+
+    var song = {
+      title: "shit music",
+      artist: "shit artist",
+      getString: function() {
+        alert("This music called: " + this.title + " by " + this.artist)
+      }
+    };
   </script>
-</div>
+
+  <body>
+    <div class='email_field' id='email_field'>
+      <script type="text/javascript">
+        myModule.taltest("overrider2");
+        song.getString();
+      </script>
+      <nav> text ddd</nav>
+    </div>
+
+    <form>
+      First name:<br>
+      <input type="text" name="firstname" ng-model="storeName"><br> <!-- ng model is from angular -->
+      Last name:<br>
+      <input type="text" name="lastname">  <p>  <p>
+      Feedback: <br>
+      <textarea type="text" name="feedback" cols = "50" rows = "5"> </textarea>  <p>
+      <input type="submit" value="Submit"> </input>
+    </form>
+
+    <p> Hey {{storeName}}, just wanted to offer you out memberhsip type below  </p>
+    <p ng-init="memberships=['basic','premium','super user']">
+      <ul ng-repeat="membership in memberships"> {{membership}} </ul>
+    </p>
+  </body>
+</html>
