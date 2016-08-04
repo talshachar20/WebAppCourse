@@ -13,7 +13,7 @@
       <!-- Nav tabs -->
       <ul class="nav nav-tabs">
         <li class="active"> <a href="#home" data-toggle="tab"> <%= link_to('Home', root_url) %> </a> </li>
-        <li> <a href="#profile"  data-toggle="tab"><%= link_to('Login', new_user_session_path , :id => "login_link") %> </a></li>
+        <li> <a href="#profile"  data-toggle="tab"> Login <% link_to('Login', new_user_session_path, :id => "login_link") %> </a></li>
         <li> <a data-toggle="tab"><%= link_to "About", root_url + "pages/about" %> </a> </li>
         <div class='tab-content'>
           <div class="tab-pane active" id="home">   KooshKoosh learns Hebrew v1 </div>

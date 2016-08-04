@@ -11,13 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123134816) do
+ActiveRecord::Schema.define(version: 20160803122712) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.text     "body",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "commenter",  limit: 255
+  end
 
   create_table "languages", force: :cascade do |t|
     t.string   "language",   limit: 255
     t.integer  "lang_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "ip_start", limit: 255
+    t.string "ip_end",   limit: 255
+    t.string "country",  limit: 255
   end
 
   create_table "memo_cards", force: :cascade do |t|
@@ -27,6 +41,13 @@ ActiveRecord::Schema.define(version: 20151123134816) do
     t.datetime "updated_at"
     t.string   "translation", limit: 255
     t.integer  "lang_id",     limit: 4
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "body",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "results", force: :cascade do |t|
@@ -39,12 +60,12 @@ ActiveRecord::Schema.define(version: 20151123134816) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",    null: false
-    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -52,7 +73,7 @@ ActiveRecord::Schema.define(version: 20151123134816) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "user_type",              limit: 255
-    t.boolean  "admin",                  limit: 1,   default: false
+    t.boolean  "admin",                  limit: 1
     t.integer  "user_rate",              limit: 4
     t.string   "user_last_login",        limit: 255
   end
